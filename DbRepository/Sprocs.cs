@@ -23,7 +23,7 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        public async Task<T> ExecuteSprocAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader)
+        public async Task<T> ExecuteAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader)
         {
             T result = default(T);
             using (var connection = new SqlConnection(config.ConnectionString))
