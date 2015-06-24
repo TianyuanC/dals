@@ -82,7 +82,7 @@
                         response = await client.PutAsJsonAsync(config.Route, config.Data);
                         break;
                         case HttpRequestMethod.Post:
-                        response = await client.PutAsJsonAsync(config.Route, config.Data);
+                        response = await client.PostAsJsonAsync(config.Route, config.Data);
                         break;
                 }
                 return loader(response);
