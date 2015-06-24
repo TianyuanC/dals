@@ -1,5 +1,6 @@
-﻿namespace HttpRepository.Model
+﻿namespace DALs.Model
 {
+    using DALs.Model.Enums;
     using System;
 
     /// <summary>
@@ -24,5 +25,11 @@
         /// </summary>
         /// <value>The data.</value>
         public object Data { get; set; }
+
+        /// <summary>
+        /// Gets or sets the request method.
+        /// </summary>
+        /// <value>The request method.</value>
+        public HttpRequestMethod RequestMethod { get; set; }
     }
 }

@@ -1,5 +1,6 @@
-﻿namespace HttpRepository.Model.Interfaces
+﻿namespace DALs.Model.Interfaces
 {
+    using DALs.Model;
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -25,6 +26,6 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        Task<T> PutAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader);
+        Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader);
     }
 }

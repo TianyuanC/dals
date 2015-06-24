@@ -1,8 +1,8 @@
 ﻿namespace DbRepository
 {
-    using DbRepository.Model;
-    using DbRepository.Model.enums;
-    using DbRepository.Model.Interfaces;
+    using DALs.Model;
+    using DALs.Model.Enums;
+    using DALs.Model.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;
