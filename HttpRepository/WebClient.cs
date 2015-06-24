@@ -20,7 +20,6 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        /// <exception cref="System.ArgumentNullException">Uri</exception>
         /// <exception cref="System.ArgumentException">route</exception>
         public async Task<T> GetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
@@ -45,16 +44,13 @@
         }
 
         /// <summary>
-        /// put as an asynchronous operation.
+        /// set as an asynchronous operation.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        /// <exception cref="System.ArgumentException">Uri
-        /// or
-        /// Route</exception>
-        /// <exception cref="System.ArgumentNullException">Data</exception>
+        /// <exception cref="System.ArgumentException"></exception>
         public async Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
             if (null == config.Uri)
@@ -67,7 +63,7 @@
             }
             if (null == config.Data)
             {
-                throw new ArgumentNullException("Data");
+                throw new ArgumentException("Data");
             }
 
             using (var client = new HttpClient())
