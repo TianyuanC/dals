@@ -40,12 +40,12 @@
         /// Initializes a new instance of the <see cref="DbClient"/> class.
         /// </summary>
         /// <param name="sprocs">The sprocs.</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException">sprocs</exception>
         public DbClient(ISprocs sprocs)
         {
             if (sprocs == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("sprocs");
             }
             this.sprocs = sprocs;
         }
@@ -71,7 +71,7 @@
 
         #region Loaders
         /// <summary>
-        /// Adses the loader.
+        /// Ads loader.
         /// </summary>
         /// <param name="reader">The reader.</param>
         /// <returns>IEnumerable&lt;Ad&gt;.</returns>

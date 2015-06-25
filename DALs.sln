@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2F741E4F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientRepository.Model", "ClientRepository.Model\ClientRepository.Model.csproj", "{2F888C19-9C0C-47EC-8090-48D4642CEE5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientRepository.UnitTests", "ClientRepository.UnitTests\ClientRepository.UnitTests.csproj", "{58E15F34-5CD3-4405-A660-70C3F7B330B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{2F888C19-9C0C-47EC-8090-48D4642CEE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F888C19-9C0C-47EC-8090-48D4642CEE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F888C19-9C0C-47EC-8090-48D4642CEE5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E15F34-5CD3-4405-A660-70C3F7B330B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E15F34-5CD3-4405-A660-70C3F7B330B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E15F34-5CD3-4405-A660-70C3F7B330B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E15F34-5CD3-4405-A660-70C3F7B330B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +69,6 @@ Global
 		{E00863F3-05BB-4214-9A16-C9EDDBF3DA33} = {4FAE8909-0279-4AAA-B432-15249C9A020F}
 		{2F741E4F-DAC5-4B9B-95BC-68F0EAE525D0} = {4FAE8909-0279-4AAA-B432-15249C9A020F}
 		{2F888C19-9C0C-47EC-8090-48D4642CEE5E} = {4FAE8909-0279-4AAA-B432-15249C9A020F}
+		{58E15F34-5CD3-4405-A660-70C3F7B330B2} = {2F741E4F-DAC5-4B9B-95BC-68F0EAE525D0}
 	EndGlobalSection
 EndGlobal
