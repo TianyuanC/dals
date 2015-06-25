@@ -56,7 +56,7 @@
         /// Gets this instance.
         /// </summary>
         /// <returns>Task&lt;IEnumerable&lt;Ad&gt;&gt;.</returns>
-        public async Task<IEnumerable<Ad>> Get()
+        public async Task<IEnumerable<Ad>> GetAsync()
         {
             var config = new SqlSprocConfiguration
             {

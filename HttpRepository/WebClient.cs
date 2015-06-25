@@ -53,6 +53,7 @@
         /// <exception cref="System.ArgumentException"></exception>
         public async Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
+            #region Args Validation
             if (null == config.Uri)
             {
                 throw new ArgumentException("Uri");
@@ -65,6 +66,11 @@
             {
                 throw new ArgumentException("Data");
             }
+            if (config.RequestMethod != HttpRequestMethod.Post && config.RequestMethod != HttpRequestMethod.Put)
+            {
+                throw new ArgumentException("RequestMethod");
+            }
+            #endregion
 
             using (var client = new HttpClient())
             {
@@ -74,12 +80,12 @@
                 HttpResponseMessage response = null;
                 switch (config.RequestMethod)
                 {
-                        case HttpRequestMethod.Put:
+                    case HttpRequestMethod.Put:
                         response = await client.PutAsJsonAsync(config.Route, config.Data);
-                        break;
-                        case HttpRequestMethod.Post:
+                    break;
+                    case HttpRequestMethod.Post:
                         response = await client.PostAsJsonAsync(config.Route, config.Data);
-                        break;
+                    break;
                 }
                 return loader(response);
             }

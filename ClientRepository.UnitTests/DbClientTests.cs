@@ -38,7 +38,7 @@
             sprocs.ExecuteAsync(Arg.Any<SqlSprocConfiguration>(), Arg.Any<Func<IDataReader, IEnumerable<Ad>>>()).Returns(Task.FromResult(ads));
 
             //act
-            var ret = await dbClient.Get();
+            var ret = await dbClient.GetAsync();
 
             //assert
             Assert.AreEqual(1, ret.Count(x=>x.Id==1));

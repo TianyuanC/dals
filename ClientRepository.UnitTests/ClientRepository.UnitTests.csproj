@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DbClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestfulClientTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
