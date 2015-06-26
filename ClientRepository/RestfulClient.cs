@@ -6,6 +6,7 @@
     using DALs.Model;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
+    using Microsoft.Azure;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
@@ -49,9 +50,9 @@
         {
             var config = new HttpClientConfig
             {
-                Uri=new Uri("uri"),
-                Route = "route",
-                Data = ids,
+                Uri=new Uri(CloudConfigurationManager.GetSetting(Settings.TestApiUri)),
+                Route = "api/ad",
+                Data = null,
                 RequestMethod = HttpRequestMethod.Get
             };
             return await webClient.GetAsync(config, LoadAds);

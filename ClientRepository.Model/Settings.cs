@@ -14,5 +14,10 @@
         /// The get ad
         /// </summary>
         public const string GetAd = "GetAd";
+
+        /// <summary>
+        /// The test API URI
+        /// </summary>
+        public const string TestApiUri = "TestApiUri";
     }
 }
