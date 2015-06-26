@@ -34,15 +34,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DALs.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.2\lib\net451\DALs.Http.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.3\lib\net451\DALs.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DALs.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.2\lib\net451\DALs.Model.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.3\lib\net451\DALs.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DALs.Sql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.2\lib\net451\DALs.Sql.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.3\lib\net451\DALs.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
