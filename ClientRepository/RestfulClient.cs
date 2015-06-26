@@ -16,14 +16,10 @@
     /// </summary>
     public class RestfulClient: IRestfulClient
     {
-        #region Members
         /// <summary>
         /// The web client
         /// </summary>
         private readonly IWebClient webClient;
-        #endregion
-
-        #region Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="RestfulClient"/> class.
         /// </summary>
@@ -43,9 +39,7 @@
             }
             this.webClient = webClient;
         }
-        #endregion
 
-        #region Logics
         /// <summary>
         /// get as an asynchronous operation.
         /// </summary>
@@ -62,9 +56,7 @@
             };
             return await webClient.GetAsync(config, LoadAds);
         }
-        #endregion
 
-        #region Loaders
         /// <summary>
         /// Loads the ads.
         /// </summary>
@@ -74,6 +66,5 @@
         {
             return new List<Ad>();
         }
-        #endregion
     }
 }

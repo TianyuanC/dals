@@ -15,7 +15,6 @@
 
     public class DbClient : IDbClient
     {
-        #region Members
         /// <summary>
         /// The sprocs
         /// </summary>
@@ -25,9 +24,7 @@
         /// The connection string
         /// </summary>
         private static readonly string ConnectionString = CloudConfigurationManager.GetSetting(Settings.DbConnectionString);
-        #endregion
 
-        #region Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="DbClient"/> class.
         /// </summary>
@@ -49,9 +46,7 @@
             }
             this.sprocs = sprocs;
         }
-        #endregion
 
-        #region Logics
         /// <summary>
         /// Gets this instance.
         /// </summary>
@@ -67,9 +62,7 @@
             };
             return await sprocs.ExecuteAsync(config, AdsLoader);
         }
-        #endregion
 
-        #region Loaders
         /// <summary>
         /// Ads loader.
         /// </summary>
@@ -96,6 +89,5 @@
             }
             return ads;
         }
-        #endregion
     }
 }

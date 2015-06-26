@@ -11,7 +11,6 @@
     /// </summary>
     public class NugetTest
     {
-        #region Members
         /// <summary>
         /// The sprocs
         /// </summary>
@@ -20,9 +19,7 @@
         /// The web client
         /// </summary>
         private readonly IWebClient webClient;
-        #endregion
 
-        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetTest"/> class.
         /// </summary>
@@ -40,7 +37,6 @@
             this.sprocs = sprocs;
             this.webClient = webClient;
         }
-        #endregion
 
         /// <summary>
         /// Testses this instance.

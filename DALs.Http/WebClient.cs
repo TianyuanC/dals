@@ -53,7 +53,6 @@
         /// <exception cref="System.ArgumentException"></exception>
         public async Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
-            #region Args Validation
             if (null == config.Uri)
             {
                 throw new ArgumentException("Uri");
@@ -70,7 +69,6 @@
             {
                 throw new ArgumentException("RequestMethod");
             }
-            #endregion
 
             using (var client = new HttpClient())
             {
