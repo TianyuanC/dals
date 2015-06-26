@@ -1,4 +1,4 @@
-﻿namespace ClientRepository.Extractions
+﻿namespace DALs.Sql.Extractions
 {
     using System.Data;
 

@@ -3,8 +3,12 @@
     using ClientRepository.Model;
     using ClientRepository.Model.Interfaces;
     using DALs.Http;
+    using DALs.Model;
+    using DALs.Model.Enums;
     using DALs.Model.Interfaces;
+    using System;
     using System.Collections.Generic;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -33,24 +37,43 @@
         /// <param name="webClient">The web client.</param>
         public RestfulClient(IWebClient webClient)
         {
+            if (null == webClient)
+            {
+                throw new ArgumentNullException("webClient");
+            }
             this.webClient = webClient;
         }
         #endregion
 
         #region Logics
         /// <summary>
-        /// Gets the asynchronous.
+        /// get as an asynchronous operation.
         /// </summary>
         /// <param name="ids">The ids.</param>
         /// <returns>Task&lt;IEnumerable&lt;Ad&gt;&gt;.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public Task<IEnumerable<Ad>> GetAsync(IEnumerable<long> ids)
+        public async Task<IEnumerable<Ad>> GetAsync(IEnumerable<long> ids)
         {
-            throw new System.NotImplementedException();
+            var config = new HttpClientConfig
+            {
+                Uri=new Uri("uri"),
+                Route = "route",
+                Data = ids,
+                RequestMethod = HttpRequestMethod.Get
+            };
+            return await webClient.GetAsync(config, LoadAds);
         }
         #endregion
 
         #region Loaders
+        /// <summary>
+        /// Loads the ads.
+        /// </summary>
+        /// <param name="msg">The MSG.</param>
+        /// <returns>IEnumerable&lt;Ad&gt;.</returns>
+        public static IEnumerable<Ad> LoadAds(HttpResponseMessage msg)
+        {
+            return new List<Ad>();
+        }
         #endregion
     }
 }
