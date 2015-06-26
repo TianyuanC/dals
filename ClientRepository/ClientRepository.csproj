@@ -56,17 +56,17 @@
       <Project>{2f888c19-9c0c-47ec-8090-48d4642cee5e}</Project>
       <Name>ClientRepository.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DALs.Http\DALs.Http.csproj">
+      <Project>{7cd50b61-5e01-4eb4-9552-c16beff81812}</Project>
+      <Name>DALs.Http</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DALs.Model\DALs.Model.csproj">
       <Project>{b5caca23-1865-45cf-8d1f-2e19e8b79738}</Project>
       <Name>DALs.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DbRepository\DbRepository.csproj">
+    <ProjectReference Include="..\DALs.Sql\DALs.Sql.csproj">
       <Project>{ab2e7df8-c9e8-4201-8d14-6fbb20d9b323}</Project>
-      <Name>DbRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HttpRepository\HttpRepository.csproj">
-      <Project>{7cd50b61-5e01-4eb4-9552-c16beff81812}</Project>
-      <Name>HttpRepository</Name>
+      <Name>DALs.Sql</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

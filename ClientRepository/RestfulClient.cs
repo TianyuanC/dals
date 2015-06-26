@@ -2,6 +2,7 @@
 {
     using ClientRepository.Model;
     using ClientRepository.Model.Interfaces;
+    using DALs.Http;
     using DALs.Model.Interfaces;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -22,7 +23,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="RestfulClient"/> class.
         /// </summary>
-        public RestfulClient(): this(new HttpRepository.WebClient())
+        public RestfulClient(): this(new WebClient())
         {
         }
 

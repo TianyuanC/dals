@@ -1,4 +1,4 @@
-﻿namespace DbRepository
+﻿namespace DALs.Sql
 {
     using DALs.Model;
     using DALs.Model.Enums;

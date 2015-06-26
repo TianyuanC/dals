@@ -1,4 +1,4 @@
-﻿namespace HttpRepository
+﻿namespace DALs.Http
 {
     using DALs.Model;
     using DALs.Model.Enums;

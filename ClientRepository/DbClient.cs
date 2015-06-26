@@ -6,7 +6,7 @@
     using DALs.Model;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
-    using DbRepository;
+    using DALs.Sql;
     using Microsoft.Azure;
     using System;
     using System.Collections.Generic;

@@ -7,8 +7,8 @@
     <ProjectGuid>{7CD50B61-5E01-4EB4-9552-C16BEFF81812}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HttpRepository</RootNamespace>
-    <AssemblyName>HttpRepository</AssemblyName>
+    <RootNamespace>DALs.Http</RootNamespace>
+    <AssemblyName>DALs.Http</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
