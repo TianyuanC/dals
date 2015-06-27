@@ -1,6 +1,7 @@
 ﻿namespace ClientRepository
 {
     using ClientRepository.Model;
+    using DALs.Model.Configs;
     using ClientRepository.Model.Interfaces;
     using DALs.Http;
     using DALs.Model;
@@ -20,11 +21,11 @@
         /// <summary>
         /// The web client
         /// </summary>
-        private readonly IWebClient webClient;
+        private readonly IRestClient webClient;
         /// <summary>
         /// Initializes a new instance of the <see cref="RestfulClient"/> class.
         /// </summary>
-        public RestfulClient(): this(new WebClient())
+        public RestfulClient(): this(new RestClient())
         {
         }
 
@@ -32,7 +33,7 @@
         /// Initializes a new instance of the <see cref="RestfulClient"/> class.
         /// </summary>
         /// <param name="webClient">The web client.</param>
-        public RestfulClient(IWebClient webClient)
+        public RestfulClient(IRestClient webClient)
         {
             if (null == webClient)
             {
@@ -48,13 +49,8 @@
         /// <returns>Task&lt;IEnumerable&lt;Ad&gt;&gt;.</returns>
         public async Task<IEnumerable<Ad>> GetAsync(IEnumerable<long> ids)
         {
-            var config = new HttpClientConfig
-            {
-                Uri=new Uri(CloudConfigurationManager.GetSetting(Settings.TestApiUri)),
-                Route = "api/ad",
-                Data = null,
-                RequestMethod = HttpRequestMethod.Get
-            };
+            var uri = new Uri(CloudConfigurationManager.GetSetting(Settings.TestApiUri));
+            var config = new HttpClientConfig(uri, "api/ad", HttpRequest.Get);
             return await webClient.GetAsync(config, LoadAds);
         }
 

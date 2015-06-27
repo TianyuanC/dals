@@ -1,7 +1,7 @@
 ﻿namespace ClientRepository.UnitTests
 {
     using ClientRepository.Model;
-    using DALs.Model;
+    using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
     using NSubstitute;
@@ -32,7 +32,7 @@
         public async Task Get()
         {
             //arrange
-            var sprocs = Substitute.For<ISprocs>();
+            var sprocs = Substitute.For<ISprocClient>();
             var dbClient = new DbClient(sprocs);
             IEnumerable<Ad> ads = new List<Ad> { new Ad { Id = 1 } };
             sprocs.ExecuteAsync(Arg.Any<SqlSprocConfiguration>(), Arg.Any<Func<IDataReader, IEnumerable<Ad>>>()).Returns(Task.FromResult(ads));

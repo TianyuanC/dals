@@ -1,6 +1,7 @@
 ﻿namespace DALs.Http
 {
     using DALs.Model;
+    using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
     using System;
@@ -11,7 +12,7 @@
     /// <summary>
     /// Class WebClient.
     /// </summary>
-    public class WebClient : IWebClient
+    public class RestClient : IRestClient
     {
         /// <summary>
         /// get as an asynchronous operation.
@@ -21,7 +22,7 @@
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
         /// <exception cref="System.ArgumentException">route</exception>
-        public async Task<T> GetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
+        public virtual async Task<T> GetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
             if (null == config.Uri)
             {
@@ -51,7 +52,7 @@
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
         /// <exception cref="System.ArgumentException"></exception>
-        public async Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
+        public virtual async Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
             if (null == config.Uri)
             {
@@ -65,7 +66,7 @@
             {
                 throw new ArgumentException("Data");
             }
-            if (config.RequestMethod != HttpRequestMethod.Post && config.RequestMethod != HttpRequestMethod.Put)
+            if (config.RequestMethod != HttpRequest.Post && config.RequestMethod != HttpRequest.Put)
             {
                 throw new ArgumentException("RequestMethod");
             }
@@ -78,10 +79,10 @@
                 HttpResponseMessage response = null;
                 switch (config.RequestMethod)
                 {
-                    case HttpRequestMethod.Put:
+                    case HttpRequest.Put:
                         response = await client.PutAsJsonAsync(config.Route, config.Data);
                     break;
-                    case HttpRequestMethod.Post:
+                    case HttpRequest.Post:
                         response = await client.PostAsJsonAsync(config.Route, config.Data);
                     break;
                 }

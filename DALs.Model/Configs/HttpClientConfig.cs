@@ -1,4 +1,4 @@
-﻿namespace DALs.Model
+﻿namespace DALs.Model.Configs
 {
     using DALs.Model.Enums;
     using System;
@@ -8,6 +8,13 @@
     /// </summary>
     public class HttpClientConfig
     {
+        public HttpClientConfig(Uri uri, string route, HttpRequest method)
+        {
+            this.Uri = uri;
+            this.Route = route;
+            this.RequestMethod = method;
+        }
+
         /// <summary>
         /// Gets or sets the URI.
         /// </summary>
@@ -30,6 +37,6 @@
         /// Gets or sets the request method.
         /// </summary>
         /// <value>The request method.</value>
-        public HttpRequestMethod RequestMethod { get; set; }
+        public HttpRequest RequestMethod { get; set; }
     }
 }

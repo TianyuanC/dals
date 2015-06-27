@@ -3,11 +3,12 @@
     using System;
     using System.Data;
     using System.Threading.Tasks;
+    using DALs.Model.Configs;
 
     /// <summary>
     /// Interface ISprocs
     /// </summary>
-    public interface ISprocs
+    public interface ISprocClient
     {
         /// <summary>
         /// Executes the sproc asynchronous.

@@ -1,4 +1,4 @@
-﻿namespace DALs.Model
+﻿namespace DALs.Model.Configs
 {
     using DALs.Model.Enums;
     using System.Collections.Generic;
@@ -9,6 +9,13 @@
     /// </summary>
     public class SqlSprocConfiguration
     {
+        public SqlSprocConfiguration(string connectionString, string sprocName, SprocMode mode)
+        {
+            this.ConnectionString = connectionString;
+            this.StoredProcedureName = sprocName;
+            this.Mode = mode;
+        }
+
         /// <summary>
         /// Gets or sets the connection string.
         /// </summary>

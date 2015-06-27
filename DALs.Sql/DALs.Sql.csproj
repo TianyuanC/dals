@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extractions\DataReaderExtractions.cs" />
-    <Compile Include="Sprocs.cs" />
+    <Compile Include="SprocClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

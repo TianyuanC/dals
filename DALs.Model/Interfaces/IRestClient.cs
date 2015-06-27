@@ -1,6 +1,6 @@
 ﻿namespace DALs.Model.Interfaces
 {
-    using DALs.Model;
+    using DALs.Model.Configs;
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -8,7 +8,7 @@
     /// <summary>
     /// Interface IWebClient
     /// </summary>
-    public interface IWebClient
+    public interface IRestClient
     {
         /// <summary>
         /// Gets the asynchronous.

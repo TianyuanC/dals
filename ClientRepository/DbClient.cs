@@ -1,8 +1,8 @@
 ﻿namespace ClientRepository
 {
-    using ClientRepository.Model;
-    using ClientRepository.Model.Interfaces;
-    using DALs.Model;
+    using Model;
+    using DALs.Model.Configs;
+    using Model.Interfaces;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
     using DALs.Sql;
@@ -18,7 +18,7 @@
         /// <summary>
         /// The sprocs
         /// </summary>
-        private readonly ISprocs sprocs;
+        private readonly ISprocClient sprocs;
 
         /// <summary>
         /// The connection string
@@ -28,7 +28,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DbClient"/> class.
         /// </summary>
-        public DbClient(): this(new Sprocs())
+        public DbClient(): this(new SprocClient())
         {
             
         }
@@ -38,7 +38,7 @@
         /// </summary>
         /// <param name="sprocs">The sprocs.</param>
         /// <exception cref="System.ArgumentNullException">sprocs</exception>
-        public DbClient(ISprocs sprocs)
+        public DbClient(ISprocClient sprocs)
         {
             if (sprocs == null)
             {
@@ -53,13 +53,7 @@
         /// <returns>Task&lt;IEnumerable&lt;Ad&gt;&gt;.</returns>
         public async Task<IEnumerable<Ad>> GetAsync()
         {
-            var config = new SqlSprocConfiguration
-            {
-                ConnectionString = ConnectionString,
-                Mode = SprocMode.ExecuteReader,
-                SqlParameters = null,
-                StoredProcedureName = Settings.GetAd
-            };
+            var config = new SqlSprocConfiguration(ConnectionString, Settings.GetAd, SprocMode.ExecuteReader);
             return await sprocs.ExecuteAsync(config, AdsLoader);
         }
 

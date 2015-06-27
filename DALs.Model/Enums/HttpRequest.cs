@@ -1,9 +1,9 @@
 ﻿namespace DALs.Model.Enums
 {
     /// <summary>
-    /// Enum HttpRequestMethod
+    /// Enum HttpRequest Method
     /// </summary>
-    public enum HttpRequestMethod
+    public enum HttpRequest
     {
         /// <summary>
         /// The get
