@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DALs.Core</id>
+    <version>1.0.0</version>
+    <authors>Tianyuan Chu</authors>
+    <owners>Tianyuan Chu</owners>
+    <projectUrl>https://github.com/TianyuanC/dals</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>DALs.Core gives a lightweight, flexible and mockable interface for database sproc access, resutful calls and more.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags></tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="5.0.8" />
+	  <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+	  <dependency id="WindowsAzure.Storage" version="4.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="DALs.Model\bin\Release\DALs.Model.dll" target="lib\net45\DALs.Model.dll" />
+	<file src="DALs.Sql\bin\Release\DALs.Sql.dll" target="lib\net45\DALs.Sql.dll" />
+	<file src="DALs.Http\bin\Release\DALs.Model.dll" target="lib\net45\DALs.Http.dll" />
+	<file src="DALs.AzureStorage\bin\Release\DALs.AzureStorage.dll" target="lib\net45\DALs.AzureStorage.dll" />
+  </files>
+</package>
