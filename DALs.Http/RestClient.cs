@@ -1,6 +1,5 @@
 ﻿namespace DALs.Http
 {
-    using DALs.Model;
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
