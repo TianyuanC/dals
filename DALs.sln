@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALs.Http", "DALs.Http\DALs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALs.AzureStorage", "DALs.AzureStorage\DALs.AzureStorage.csproj", "{341131AC-8CF7-4D83-A1EE-DEB0EC309EC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientRepository.IntegrationTests", "ClientRepository.IntegrationTests\ClientRepository.IntegrationTests.csproj", "{37206E2D-0347-426F-BCBA-0F1EE311E5C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{341131AC-8CF7-4D83-A1EE-DEB0EC309EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{341131AC-8CF7-4D83-A1EE-DEB0EC309EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{341131AC-8CF7-4D83-A1EE-DEB0EC309EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37206E2D-0347-426F-BCBA-0F1EE311E5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37206E2D-0347-426F-BCBA-0F1EE311E5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37206E2D-0347-426F-BCBA-0F1EE311E5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37206E2D-0347-426F-BCBA-0F1EE311E5C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,5 +95,6 @@ Global
 		{2F741E4F-DAC5-4B9B-95BC-68F0EAE525D0} = {4FAE8909-0279-4AAA-B432-15249C9A020F}
 		{2F888C19-9C0C-47EC-8090-48D4642CEE5E} = {4FAE8909-0279-4AAA-B432-15249C9A020F}
 		{58E15F34-5CD3-4405-A660-70C3F7B330B2} = {2F741E4F-DAC5-4B9B-95BC-68F0EAE525D0}
+		{37206E2D-0347-426F-BCBA-0F1EE311E5C5} = {2F741E4F-DAC5-4B9B-95BC-68F0EAE525D0}
 	EndGlobalSection
 EndGlobal
