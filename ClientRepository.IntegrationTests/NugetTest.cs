@@ -1,7 +1,9 @@
 ﻿namespace ClientRepository.IntegrationTests
 {
+    using System;
+    using DALs.Model.Configs;
+    using DALs.Model.Enums;
     using DALs.Http;
-    using DALs.Model;
     using DALs.Model.Interfaces;
     using DALs.Sql;
     using System.Threading.Tasks;
@@ -14,16 +16,16 @@
         /// <summary>
         /// The sprocs
         /// </summary>
-        private readonly ISprocs sprocs;
+        private readonly ISprocClient sprocs;
         /// <summary>
         /// The web client
         /// </summary>
-        private readonly IWebClient webClient;
+        private readonly IRestClient webClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetTest"/> class.
         /// </summary>
-        public NugetTest():this(new Sprocs(), new WebClient())
+        public NugetTest():this(new SprocClient(), new RestClient())
         {
         }
 
@@ -32,7 +34,7 @@
         /// </summary>
         /// <param name="sprocs">The sprocs.</param>
         /// <param name="webClient">The web client.</param>
-        public NugetTest(ISprocs sprocs, IWebClient webClient)
+        public NugetTest(ISprocClient sprocs, IRestClient webClient)
         {
             this.sprocs = sprocs;
             this.webClient = webClient;
@@ -44,9 +46,9 @@
         /// <returns>Task.</returns>
         public async Task Tests()
         {
-            var config = new SqlSprocConfiguration();
+            var config = new SqlSprocConfiguration("connection", "sproc", SprocMode.ExecuteReader);
             await sprocs.ExecuteAsync(config, (dataReader) => 1);
-            var httpConfig = new HttpClientConfig();
+            var httpConfig = new HttpClientConfig(new Uri("uri"), "route", HttpRequest.Get);
             await webClient.GetAsync(httpConfig, (response) => 1);
         }
     }
