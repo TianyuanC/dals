@@ -1,6 +1,6 @@
 ﻿namespace ClientRepository.UnitTests
 {
-    using ClientRepository.Model;
+    using Model;
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
@@ -35,14 +35,14 @@
             var sprocs = Substitute.For<ISprocClient>();
             var dbClient = new DbClient(sprocs);
             IEnumerable<Ad> ads = new List<Ad> { new Ad { Id = 1 } };
-            sprocs.ExecuteAsync(Arg.Any<SqlSprocConfiguration>(), Arg.Any<Func<IDataReader, IEnumerable<Ad>>>()).Returns(Task.FromResult(ads));
+            sprocs.QueryAsync(Arg.Any<SqlSprocConfiguration>(), Arg.Any<Func<IDataReader, IEnumerable<Ad>>>()).Returns(Task.FromResult(ads));
 
             //act
             var ret = await dbClient.GetAsync();
 
             //assert
             Assert.AreEqual(1, ret.Count(x=>x.Id==1));
-            sprocs.Received(1).ExecuteAsync(
+            sprocs.Received(1).QueryAsync(
                     Arg.Is<SqlSprocConfiguration>(
                         x => x.Mode == SprocMode.ExecuteReader && x.StoredProcedureName == Settings.GetAd),
                     Arg.Any<Func<IDataReader, IEnumerable<Ad>>>());

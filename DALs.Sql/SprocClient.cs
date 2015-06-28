@@ -3,8 +3,8 @@
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
+    using DALs.Sql.Extensions;
     using System;
-    using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Diagnostics;
@@ -16,14 +16,37 @@
     /// </summary>
     public class SprocClient : ISprocClient
     {
-        /// <summary>
-        /// execute sproc as an asynchronous operation.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="config">The configuration.</param>
-        /// <param name="loader">The loader.</param>
-        /// <returns>Task&lt;T&gt;.</returns>
-        public virtual  async Task<T> ExecuteAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader)
+        public virtual async Task<int> CommandAsync(SqlSprocConfiguration config)
+        {
+            int result = -1;
+            using (var connection = new SqlConnection(config.ConnectionString))
+            {
+                try
+                {
+                    using (var command = new SqlCommand(config.StoredProcedureName, connection))
+                    {
+                        command.LoadParameters(config.SqlParameters.ToList());
+                        connection.Open();
+                        result = await command.ExecuteNonQueryAsync();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Trace.TraceError(e.StackTrace);
+                }
+                finally
+                {
+                    if (connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                        connection.Dispose();
+                    }
+                }
+            }
+            return result;
+        }
+
+        public virtual async Task<T> QueryAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader)
         {
             T result = default(T);
             using (var connection = new SqlConnection(config.ConnectionString))
@@ -32,16 +55,8 @@
                 {
                     using (var command = new SqlCommand(config.StoredProcedureName, connection))
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        IEnumerable<SqlParameter> sqlParameters = config.SqlParameters;
-
-                        if (sqlParameters != null && sqlParameters.Any())
-                        {
-                            command.Parameters.AddRange(sqlParameters.ToArray());
-                        }
-
+                        command.LoadParameters(config.SqlParameters.ToList());
                         connection.Open();
-
                         switch (config.Mode)
                         {
                             case SprocMode.ExecuteReader:
@@ -49,9 +64,6 @@
                                 {
                                     result = loader(reader);
                                 }
-                                break;
-                            case SprocMode.ExecuteNonQuery:
-                                await command.ExecuteNonQueryAsync();
                                 break;
                             case SprocMode.ExecuteScalar:
                                 result = (T)await command.ExecuteScalarAsync();
@@ -65,8 +77,11 @@
                 }
                 finally
                 {
-                    connection.Close();
-                    connection.Dispose();
+                    if (connection.State != ConnectionState.Closed)
+                    {
+                        connection.Close();
+                        connection.Dispose();
+                    }
                 }
             }
             return result;

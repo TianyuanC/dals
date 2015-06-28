@@ -54,7 +54,7 @@
         public async Task<IEnumerable<Ad>> GetAsync()
         {
             var config = new SqlSprocConfiguration(ConnectionString, Settings.GetAd, SprocMode.ExecuteReader);
-            return await sprocs.ExecuteAsync(config, AdsLoader);
+            return await sprocs.QueryAsync(config, AdsLoader);
         }
 
         /// <summary>

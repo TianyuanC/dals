@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\SqlCommandExtensions.cs" />
     <Compile Include="Extractions\DataReaderExtractions.cs" />
     <Compile Include="SprocClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
