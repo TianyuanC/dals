@@ -1,6 +1,7 @@
 # DALs
 [![Build status](https://ci.appveyor.com/api/projects/status/tq98cre3909s8b3r?svg=true)](https://ci.appveyor.com/project/TianyuanC/dals)
-Multiple ways of data access, easy for unit testing and dependency injection
+
+DALs.Core gives a lightweight, flexible and mockable interface, easy for unit testing and dependency injection
 
 * Execute Stored Procedure
 * Access Restful Services
