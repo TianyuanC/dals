@@ -8,7 +8,7 @@ using DALs.Model.Interfaces;
 
 namespace DALs.Http
 {
-    public class InitializationRepository : IInitializationRepository
+    public class InitProvider : IInitProvider
     {
         private Lazy<HttpClient> httpClient = new Lazy<HttpClient>(()=>new HttpClient());
         public HttpClient HttpClient {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DALs.Model.Interfaces
 {
-    public interface IInitializationRepository
+    public interface IInitProvider
     {
         HttpClient HttpClient { get; }
     }
