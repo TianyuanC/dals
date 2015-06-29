@@ -5,10 +5,10 @@
     using DALs.Model.Interfaces;
     using DALs.Sql.Extensions;
     using System;
+    using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
     using System.Diagnostics;
-    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -17,6 +17,27 @@
     public class SprocClient : ISprocClient
     {
         /// <summary>
+        /// The initialize
+        /// </summary>
+        private readonly IInitSqlHelper init;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SprocClient"/> class.
+        /// </summary>
+        public SprocClient():this(new InitSqlHelper())
+        { 
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SprocClient"/> class.
+        /// </summary>
+        /// <param name="init">The initialize.</param>
+        public SprocClient(IInitSqlHelper init)
+        {
+            this.init = init;
+        }
+
+        /// <summary>
         /// command as an asynchronous operation.
         /// </summary>
         /// <param name="config">The configuration.</param>
@@ -24,13 +45,13 @@
         public virtual async Task<int> CommandAsync(SqlSprocConfiguration config)
         {
             int result = -1;
-            using (var connection = new SqlConnection(config.ConnectionString))
+            using (IDbConnection connection = init.DbConnection(config.ConnectionString))
             {
                 try
                 {
-                    using (var command = new SqlCommand(config.StoredProcedureName, connection))
+                    using (IDbCommand command = init.DbCommand(config.StoredProcedureName))
                     {
-                        command.LoadParameters(config.SqlParameters.ToList());
+                        command.LoadParameters(config.SqlParameters as List<SqlParameter>);
                         connection.Open();
                         result = await command.ExecuteNonQueryAsync();
                     }
@@ -41,11 +62,7 @@
                 }
                 finally
                 {
-                    if (connection.State != ConnectionState.Closed)
-                    {
-                        connection.Close();
-                        connection.Dispose();
-                    }
+                    connection.ForceClose();
                 }
             }
             return result;
@@ -61,13 +78,13 @@
         public virtual async Task<T> QueryAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader = null)
         {
             T result = default(T);
-            using (var connection = new SqlConnection(config.ConnectionString))
+            using (IDbConnection connection = init.DbConnection(config.ConnectionString))
             {
                 try
                 {
-                    using (var command = new SqlCommand(config.StoredProcedureName, connection))
+                    using (IDbCommand command = init.DbCommand(config.StoredProcedureName))
                     {
-                        command.LoadParameters(config.SqlParameters.ToList());
+                        command.LoadParameters(config.SqlParameters as List<SqlParameter>);
                         connection.Open();
                         switch (config.Mode)
                         {
@@ -89,11 +106,7 @@
                 }
                 finally
                 {
-                    if (connection.State != ConnectionState.Closed)
-                    {
-                        connection.Close();
-                        connection.Dispose();
-                    }
+                    connection.ForceClose();
                 }
             }
             return result;

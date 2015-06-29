@@ -76,6 +76,7 @@
     <Compile Include="Enums\SprocMode.cs" />
     <Compile Include="Configs\HttpClientConfig.cs" />
     <Compile Include="Interfaces\IInitHttpHelper.cs" />
+    <Compile Include="Interfaces\IInitSqlHelper.cs" />
     <Compile Include="Interfaces\IQueueClient.cs" />
     <Compile Include="Interfaces\ISprocClient.cs" />
     <Compile Include="Interfaces\IRestClient.cs" />

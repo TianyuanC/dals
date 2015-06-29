@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Class WebClient.
+    /// Class RestClient.
     /// </summary>
     public class RestClient : IRestClient
     {

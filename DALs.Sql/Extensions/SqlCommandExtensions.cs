@@ -15,14 +15,17 @@
         /// </summary>
         /// <param name="command">The command.</param>
         /// <param name="parameters">The parameters.</param>
-        public static void LoadParameters(this SqlCommand command, List<SqlParameter> parameters)
+        public static void LoadParameters(this IDbCommand command, List<SqlParameter> parameters)
         {
             command.CommandType = CommandType.StoredProcedure;
             IEnumerable<SqlParameter> sqlParameters = parameters;
 
             if (sqlParameters != null && sqlParameters.Any())
             {
-                command.Parameters.AddRange(sqlParameters.ToArray());
+                foreach (var sqlParameter in parameters)
+                {
+                    command.Parameters.Add(sqlParameter);
+                }
             }
         }
     }
