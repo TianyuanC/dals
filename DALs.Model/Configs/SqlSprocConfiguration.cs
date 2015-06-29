@@ -9,6 +9,12 @@
     /// </summary>
     public class SqlSprocConfiguration
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlSprocConfiguration"/> class.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="sprocName">Name of the sproc.</param>
+        /// <param name="mode">The mode.</param>
         public SqlSprocConfiguration(string connectionString, string sprocName, SprocMode mode)
         {
             ConnectionString = connectionString;

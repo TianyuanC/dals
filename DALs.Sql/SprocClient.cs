@@ -16,6 +16,11 @@
     /// </summary>
     public class SprocClient : ISprocClient
     {
+        /// <summary>
+        /// command as an asynchronous operation.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        /// <returns>Task&lt;System.Int32&gt;.</returns>
         public virtual async Task<int> CommandAsync(SqlSprocConfiguration config)
         {
             int result = -1;
@@ -46,6 +51,13 @@
             return result;
         }
 
+        /// <summary>
+        /// query as an asynchronous operation.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="config">The configuration.</param>
+        /// <param name="loader">The loader.</param>
+        /// <returns>Task&lt;T&gt;.</returns>
         public virtual async Task<T> QueryAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader)
         {
             T result = default(T);

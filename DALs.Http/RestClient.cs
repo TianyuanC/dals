@@ -13,14 +13,28 @@
     /// </summary>
     public class RestClient : IRestClient
     {
+        /// <summary>
+        /// The inits
+        /// </summary>
         private readonly IInitProvider inits;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestClient"/> class.
+        /// </summary>
         public RestClient():this(new InitProvider())
         {  
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestClient"/> class.
+        /// </summary>
+        /// <param name="initProvider">The initialize provider.</param>
         public RestClient(IInitProvider initProvider)
         {
+            if (initProvider == null)
+            {
+                throw new ArgumentNullException("initProvider");
+            }
             inits = initProvider;
         }
 
@@ -31,7 +45,8 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        /// <exception cref="System.ArgumentException">route</exception>
+        /// <exception cref="System.ArgumentException">
+        /// </exception>
         public virtual async Task<T> GetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
         {
             if (null == config.Uri)

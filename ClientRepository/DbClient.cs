@@ -1,13 +1,13 @@
 ﻿namespace ClientRepository
 {
-    using Model;
     using DALs.Model.Configs;
-    using Model.Interfaces;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
     using DALs.Sql;
     using DALs.Sql.Extractions;
     using Microsoft.Azure;
+    using Model;
+    using Model.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Data;

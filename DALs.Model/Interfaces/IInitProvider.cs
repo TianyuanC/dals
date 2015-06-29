@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DALs.Model.Interfaces
+﻿namespace DALs.Model.Interfaces
 {
+    using System.Net.Http;
+
+    /// <summary>
+    /// Interface IInitProvider
+    /// </summary>
     public interface IInitProvider
     {
+        /// <summary>
+        /// Gets the HTTP client.
+        /// </summary>
+        /// <value>The HTTP client.</value>
         HttpClient HttpClient { get; }
     }
 }

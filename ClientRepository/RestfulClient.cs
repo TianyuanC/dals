@@ -1,10 +1,9 @@
 ﻿namespace ClientRepository
 {
     using ClientRepository.Model;
-    using DALs.Model.Configs;
     using ClientRepository.Model.Interfaces;
     using DALs.Http;
-    using DALs.Model;
+    using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
     using Microsoft.Azure;
@@ -21,7 +20,7 @@
         /// <summary>
         /// The web client
         /// </summary>
-        private readonly IRestClient webClient;
+        private readonly IRestClient restClient;
         /// <summary>
         /// Initializes a new instance of the <see cref="RestfulClient"/> class.
         /// </summary>
@@ -32,14 +31,14 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="RestfulClient"/> class.
         /// </summary>
-        /// <param name="webClient">The web client.</param>
-        public RestfulClient(IRestClient webClient)
+        /// <param name="restClient">The web client.</param>
+        public RestfulClient(IRestClient restClient)
         {
-            if (null == webClient)
+            if (restClient == null)
             {
-                throw new ArgumentNullException("webClient");
+                throw new ArgumentNullException("restClient");
             }
-            this.webClient = webClient;
+            this.restClient = restClient;
         }
 
         /// <summary>
@@ -51,7 +50,7 @@
         {
             var uri = new Uri(CloudConfigurationManager.GetSetting(Settings.TestApiUri));
             var config = new HttpClientConfig(uri, "api/ad", HttpRequest.Get);
-            return await webClient.GetAsync(config, LoadAds);
+            return await this.restClient.GetAsync(config, LoadAds);
         }
 
         /// <summary>

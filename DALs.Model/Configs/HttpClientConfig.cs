@@ -8,6 +8,12 @@
     /// </summary>
     public class HttpClientConfig
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpClientConfig"/> class.
+        /// </summary>
+        /// <param name="uri">The URI.</param>
+        /// <param name="route">The route.</param>
+        /// <param name="method">The method.</param>
         public HttpClientConfig(Uri uri, string route, HttpRequest method)
         {
             this.Uri = uri;

@@ -1,11 +1,11 @@
 ﻿namespace ClientRepository.IntegrationTests
 {
-    using System;
+    using DALs.Http;
     using DALs.Model.Configs;
     using DALs.Model.Enums;
-    using DALs.Http;
     using DALs.Model.Interfaces;
     using DALs.Sql;
+    using System;
     using System.Threading.Tasks;
 
     /// <summary>

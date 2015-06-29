@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using DALs.Model.Interfaces;
-
-namespace DALs.Http
+﻿namespace DALs.Http
 {
+    using DALs.Model.Interfaces;
+    using System;
+    using System.Net.Http;
+
+    /// <summary>
+    /// Class InitProvider.
+    /// </summary>
     public class InitProvider : IInitProvider
     {
+        /// <summary>
+        /// The HTTP client
+        /// </summary>
         private Lazy<HttpClient> httpClient = new Lazy<HttpClient>(()=>new HttpClient());
+        
+        /// <summary>
+        /// Gets the HTTP client.
+        /// </summary>
+        /// <value>The HTTP client.</value>
         public HttpClient HttpClient {
             get { return httpClient.Value; }
         }
