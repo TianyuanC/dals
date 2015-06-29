@@ -5,9 +5,9 @@
     using System.Net.Http;
 
     /// <summary>
-    /// Class InitProvider.
+    /// Class InitHttpHelper.
     /// </summary>
-    public class InitProvider : IInitProvider
+    public class InitHttpHelper : IInitHttpHelper
     {
         /// <summary>
         /// The HTTP client

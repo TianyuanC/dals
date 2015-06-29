@@ -58,7 +58,7 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        public virtual async Task<T> QueryAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader)
+        public virtual async Task<T> QueryAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader = null)
         {
             T result = default(T);
             using (var connection = new SqlConnection(config.ConnectionString))

@@ -16,12 +16,12 @@
         /// <summary>
         /// The inits
         /// </summary>
-        private readonly IInitProvider inits;
+        private readonly IInitHttpHelper inits;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RestClient"/> class.
         /// </summary>
-        public RestClient():this(new InitProvider())
+        public RestClient():this(new InitHttpHelper())
         {  
         }
 
@@ -29,7 +29,7 @@
         /// Initializes a new instance of the <see cref="RestClient"/> class.
         /// </summary>
         /// <param name="initProvider">The initialize provider.</param>
-        public RestClient(IInitProvider initProvider)
+        public RestClient(IInitHttpHelper initProvider)
         {
             if (initProvider == null)
             {
