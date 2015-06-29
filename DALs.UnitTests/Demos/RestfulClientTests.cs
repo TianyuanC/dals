@@ -1,5 +1,6 @@
-﻿namespace ClientRepository.UnitTests
+﻿namespace DALs.UnitTests.Demos
 {
+    using ClientRepository;
     using NUnit.Framework;
 
     [TestFixture]

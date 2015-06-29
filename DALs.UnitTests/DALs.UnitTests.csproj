@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58E15F34-5CD3-4405-A660-70C3F7B330B2}</ProjectGuid>
+    <ProjectGuid>{07E099E9-F9D2-4326-910F-8B6789AC0E4D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClientRepository.UnitTests</RootNamespace>
-    <AssemblyName>ClientRepository.UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>DALs.UnitTests</RootNamespace>
+    <AssemblyName>DALs.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -43,8 +42,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,13 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbClientTests.cs" />
+    <Compile Include="Demos\DbClientTests.cs" />
+    <Compile Include="Demos\RestfulClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestfulClientTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <Folder Include="DALsHttp\" />
+    <Folder Include="DAlsSql\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClientRepository.Model\ClientRepository.Model.csproj">
@@ -69,10 +66,21 @@
       <Project>{e00863f3-05bb-4214-9a16-c9eddbf3da33}</Project>
       <Name>ClientRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DALs.Http\DALs.Http.csproj">
+      <Project>{7cd50b61-5e01-4eb4-9552-c16beff81812}</Project>
+      <Name>DALs.Http</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DALs.Model\DALs.Model.csproj">
       <Project>{b5caca23-1865-45cf-8d1f-2e19e8b79738}</Project>
       <Name>DALs.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DALs.Sql\DALs.Sql.csproj">
+      <Project>{ab2e7df8-c9e8-4201-8d14-6fbb20d9b323}</Project>
+      <Name>DALs.Sql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

@@ -1,6 +1,7 @@
-﻿namespace ClientRepository.UnitTests
+﻿namespace DALs.UnitTests.Demos
 {
-    using Model;
+    using ClientRepository;
+    using ClientRepository.Model;
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;

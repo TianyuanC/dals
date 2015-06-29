@@ -13,6 +13,17 @@
     /// </summary>
     public class RestClient : IRestClient
     {
+        private readonly IInitProvider inits;
+
+        public RestClient():this(new InitProvider())
+        {  
+        }
+
+        public RestClient(IInitProvider initProvider)
+        {
+            inits = initProvider;
+        }
+
         /// <summary>
         /// get as an asynchronous operation.
         /// </summary>
@@ -32,7 +43,7 @@
                 throw new ArgumentException("Route");
             }
 
-            using (var client = new HttpClient())
+            using (var client = inits.HttpClient)
             {
                 client.BaseAddress = config.Uri;
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -70,7 +81,7 @@
                 throw new ArgumentException("RequestMethod");
             }
 
-            using (var client = new HttpClient())
+            using (var client = inits.HttpClient)
             {
                 client.BaseAddress = config.Uri;
                 client.DefaultRequestHeaders.Accept.Clear();
