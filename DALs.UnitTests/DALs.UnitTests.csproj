@@ -64,15 +64,14 @@
     <Compile Include="DAlsSql\Extensions\IDbCommandExtensionsTests.cs" />
     <Compile Include="DAlsSql\Extensions\IDbConnectionExtensionsTests.cs" />
     <Compile Include="DAlsSql\Extensions\SqlCommandExtensionsTest.cs" />
+    <Compile Include="DAlsSql\Extractions\DataReaderExtractionsTests.cs" />
     <Compile Include="DAlsSql\InitSqlHelperTests.cs" />
     <Compile Include="DAlsSql\SprocClientTests.cs" />
     <Compile Include="Demos\DbClientTests.cs" />
     <Compile Include="Demos\RestfulClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAlsSql\Extractions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ClientRepository.Model\ClientRepository.Model.csproj">
       <Project>{2f888c19-9c0c-47ec-8090-48d4642cee5e}</Project>

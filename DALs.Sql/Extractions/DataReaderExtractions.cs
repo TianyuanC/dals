@@ -1,6 +1,8 @@
 ﻿namespace DALs.Sql.Extractions
 {
+    using System;
     using System.Data;
+    using System.Diagnostics;
 
     /// <summary>
     /// Class DataReaderExtractions.
@@ -17,7 +19,22 @@
         /// <returns>T.</returns>
         public static T Get<T>(this IDataReader reader, int index, T defaultVal = default(T))
         {
-            return reader.IsDBNull(index) ? defaultVal : (T)reader[index];
+            if (reader.IsDBNull(index))
+            {
+                return defaultVal;
+            }
+
+            var result = reader[index];
+            try
+            {
+                return (T)result;
+            }
+            catch (InvalidCastException)
+            {
+                Trace.TraceError("Cannot cast from {0} to {1}"
+                    , result.GetType().ToString(), defaultVal.GetType().ToString());
+                throw;
+            }
         }
     }
 }
