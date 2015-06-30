@@ -5,8 +5,8 @@
 
 DALs.Core gives a lightweight, flexible and mockable interface, easy for unit testing and dependency injection
 
-* Execute Stored Procedure
-* Access Restful Services
+* Execute Stored Procedure using SqlConnection and SqlCommand 
+* Access Restful Services using HttpClient
 * Azure storages coming up
 
 # Nuget

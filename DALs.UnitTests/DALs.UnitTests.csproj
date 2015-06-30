@@ -54,6 +54,8 @@
     <Compile Include="DALsHttp\RestClientTests.cs" />
     <Compile Include="DALsModel\Configs\HttpClinetConfigTests.cs" />
     <Compile Include="DALsModel\Configs\SqlSprocConfigsTests.cs" />
+    <Compile Include="DAlsSql\Extensions\IDbCommandExtensionsTests.cs" />
+    <Compile Include="DAlsSql\Extensions\IDbConnectionExtensionsTests.cs" />
     <Compile Include="DAlsSql\Extensions\SqlCommandExtensionsTest.cs" />
     <Compile Include="DAlsSql\InitSqlHelperTests.cs" />
     <Compile Include="DAlsSql\SprocClientTests.cs" />
