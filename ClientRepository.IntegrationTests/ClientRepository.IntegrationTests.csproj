@@ -34,19 +34,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DALs.AzureStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.5\lib\net45\DALs.AzureStorage.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.6\lib\net45\DALs.AzureStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DALs.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.5\lib\net45\DALs.Http.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.6\lib\net45\DALs.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DALs.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.5\lib\net45\DALs.Model.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.6\lib\net45\DALs.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DALs.Sql, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DALs.Core.1.0.5\lib\net45\DALs.Sql.dll</HintPath>
+      <HintPath>..\packages\DALs.Core.1.0.6\lib\net45\DALs.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -91,7 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NugetTest.cs" />
+    <Compile Include="NugetDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
