@@ -85,6 +85,7 @@
                 {
                     using (IDbCommand command = init.DbCommand(config.StoredProcedureName))
                     {
+                        command.Connection = connection;
                         command.LoadParameters(config.SqlParameters as List<SqlParameter>);
                         connection.Open();
                         switch (config.Mode)
