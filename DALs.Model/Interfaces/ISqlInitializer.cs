@@ -1,32 +1,24 @@
-﻿namespace DALs.Sql
+﻿namespace DALs.Model.Interfaces
 {
-    using DALs.Model.Interfaces;
     using System.Data;
-    using System.Data.SqlClient;
 
     /// <summary>
-    /// Class InitSqlHelper.
+    /// Interface ISqlInitializer
     /// </summary>
-    public class InitSqlHelper : IInitSqlHelper
+    public interface ISqlInitializer
     {
         /// <summary>
         /// Databases the connection.
         /// </summary>
         /// <param name="connectionString">The connection string.</param>
         /// <returns>IDbConnection.</returns>
-        public IDbConnection DbConnection(string connectionString)
-        {
-            return new SqlConnection(connectionString);
-        }
+        IDbConnection DbConnection(string connectionString);
 
         /// <summary>
         /// Databases the command.
         /// </summary>
         /// <param name="sproc">The sproc.</param>
         /// <returns>IDbCommand.</returns>
-        public IDbCommand DbCommand(string sproc)
-        {
-            return new SqlCommand(sproc);
-        }
+        IDbCommand DbCommand(string sproc);
     }
 }

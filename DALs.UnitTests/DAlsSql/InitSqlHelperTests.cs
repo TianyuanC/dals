@@ -11,7 +11,7 @@
         [Test]
         public void DbConnection()
         {
-            var init = new InitSqlHelper();
+            var init = new SqlInitializer();
             var connection = init.DbConnection(FakeConnection);
             Assert.IsTrue(connection != null);
         }
@@ -19,7 +19,7 @@
         [Test]
         public void DbCommand()
         {
-            var init = new InitSqlHelper();
+            var init = new SqlInitializer();
             var command = init.DbCommand("sproc");
             Assert.IsTrue(command != null);
         }

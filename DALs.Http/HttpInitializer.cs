@@ -5,14 +5,15 @@
     using System.Net.Http;
 
     /// <summary>
-    /// Class InitHttpHelper.
+    /// Class HttpInitializer.
     /// </summary>
-    public class InitHttpHelper : IInitHttpHelper
+    public class HttpInitializer : IHttpInitializer
     {
         /// <summary>
         /// The HTTP client
         /// </summary>
-        private Lazy<HttpClient> httpClient = new Lazy<HttpClient>(()=>new HttpClient());
+        private readonly Lazy<HttpClient> httpClient 
+            = new Lazy<HttpClient>(()=>new HttpClient());
         
         /// <summary>
         /// Gets the HTTP client.

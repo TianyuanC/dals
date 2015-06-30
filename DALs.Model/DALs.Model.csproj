@@ -74,14 +74,14 @@
   <ItemGroup>
     <Compile Include="Enums\HttpRequest.cs" />
     <Compile Include="Enums\SprocMode.cs" />
-    <Compile Include="Configs\HttpClientConfig.cs" />
-    <Compile Include="Interfaces\IInitHttpHelper.cs" />
-    <Compile Include="Interfaces\IInitSqlHelper.cs" />
+    <Compile Include="Configs\HttpConfiguration.cs" />
+    <Compile Include="Interfaces\IHttpInitializer.cs" />
+    <Compile Include="Interfaces\ISqlInitializer.cs" />
     <Compile Include="Interfaces\IQueueClient.cs" />
     <Compile Include="Interfaces\ISprocClient.cs" />
     <Compile Include="Interfaces\IRestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configs\SqlSprocConfiguration.cs" />
+    <Compile Include="Configs\SprocConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

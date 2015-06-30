@@ -17,7 +17,7 @@
         public void ConstructorNullInit()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => new RestClient(null));
-            Assert.AreEqual("initProvider", ex.ParamName);
+            Assert.AreEqual("init", ex.ParamName);
         }
 
         //[Test]

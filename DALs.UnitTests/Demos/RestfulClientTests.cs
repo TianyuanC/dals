@@ -35,7 +35,7 @@
             var rest = Substitute.For<IRestClient>();
             var client = new RestfulClient(rest);
             IEnumerable<Ad> ads = new List<Ad>();
-            rest.GetAsync(Arg.Any<HttpClientConfig>(), Arg.Any<Func<HttpResponseMessage, IEnumerable<Ad>>>())
+            rest.GetAsync(Arg.Any<HttpConfiguration>(), Arg.Any<Func<HttpResponseMessage, IEnumerable<Ad>>>())
                 .Returns(Task.FromResult(ads));
             
             //act
@@ -43,7 +43,7 @@
             
             //assert
             rest.Received(1).GetAsync(
-                    Arg.Is<HttpClientConfig>(x => x.Route == "api/ad"),
+                    Arg.Is<HttpConfiguration>(x => x.Route == "api/ad"),
                     Arg.Any<Func<HttpResponseMessage, IEnumerable<Ad>>>());
         }
 

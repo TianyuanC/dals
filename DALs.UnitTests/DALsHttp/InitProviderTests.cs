@@ -10,13 +10,13 @@
         [Test]
         public void Constructor()
         {
-            new InitHttpHelper();
+            new HttpInitializer();
         }
 
         [Test]
         public void HttpClient()
         {
-            var provider = new InitHttpHelper();
+            var provider = new HttpInitializer();
             Assert.IsTrue(provider.HttpClient is HttpClient);
         }
     }

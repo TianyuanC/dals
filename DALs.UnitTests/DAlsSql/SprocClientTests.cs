@@ -11,6 +11,8 @@
     using System.Data;
     using System.Linq;
     using System.Threading.Tasks;
+    using System;
+    using NSubstitute.ExceptionExtensions;
 
     [TestFixture]
     public class SprocClientTests
@@ -29,27 +31,47 @@
             //arrange
             var connection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
-            var init = Substitute.For<IInitSqlHelper>();
+            var init = Substitute.For<ISqlInitializer>();
             connection.Open();
             init.DbConnection(Arg.Any<string>()).Returns(connection);
             init.DbCommand(Arg.Any<string>()).Returns(command);
             var client = new SprocClient(init);
 
             //act
-            var result = await client.CommandAsync(new SqlSprocConfiguration(FakeConnection, "testSproc"));
-            
+            var result = await client.CommandAsync(new SprocConfiguration(FakeConnection, "testSproc"));
+
             //assert
             Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public async Task CommandThrow()
+        {
+            //arrange
+            var connection = Substitute.For<IDbConnection>();
+            var command = Substitute.For<IDbCommand>();
+            var init = Substitute.For<ISqlInitializer>();
+            connection.Open();
+            command.ExecuteNonQuery().Throws(call => { throw new Exception();});
+            init.DbConnection(Arg.Any<string>()).Returns(connection);
+            init.DbCommand(Arg.Any<string>()).Returns(command);
+            var client = new SprocClient(init);
+
+            //act
+            var result = await client.CommandAsync(new SprocConfiguration(FakeConnection, "testSproc"));
+
+            //assert
+            Assert.AreEqual(-1, result);
         }
 
         [Test]
         public async Task QueryScalar()
         {
             //arrange
-            IEnumerable<Ad> ads = new List<Ad>();
+            IEnumerable<Ad> ads = new List<Ad> { new Ad { Id = long.MaxValue } };
             var connection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
-            var init = Substitute.For<IInitSqlHelper>();
+            var init = Substitute.For<ISqlInitializer>();
             connection.Open();
             command.ExecuteScalar().Returns(ads);
             init.DbConnection(Arg.Any<string>()).Returns(connection);
@@ -57,10 +79,53 @@
             var client = new SprocClient(init);
 
             //act
-            var result = await client.QueryAsync<IEnumerable<Ad>>(new SqlSprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
+            var result = await client.QueryAsync<IEnumerable<Ad>>(
+                new SprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
 
             //assert
-            Assert.AreEqual(0, result.Count());
+            Assert.AreEqual(1, result.Count(x => x.Id == long.MaxValue));
+        }
+
+        [Test]
+        public async Task QueryReader()
+        {
+            //arrange
+            var connection = Substitute.For<IDbConnection>();
+            var command = Substitute.For<IDbCommand>();
+            var init = Substitute.For<ISqlInitializer>();
+            connection.Open();
+            init.DbConnection(Arg.Any<string>()).Returns(connection);
+            init.DbCommand(Arg.Any<string>()).Returns(command);
+            var client = new SprocClient(init);
+
+            //act
+            var result = await client.QueryAsync<IEnumerable<Ad>>(
+                new SprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteReader),
+                reader => new List<Ad> { new Ad { Id = long.MinValue } });
+
+            //assert
+            Assert.AreEqual(1, result.Count(x => x.Id == long.MinValue));
+        }
+
+        [Test]
+        public async Task QueryThrow()
+        {
+            //arrange
+            var connection = Substitute.For<IDbConnection>();
+            var command = Substitute.For<IDbCommand>();
+            var init = Substitute.For<ISqlInitializer>();
+            connection.Open();
+            command.ExecuteScalar().Throws<Exception>();
+            init.DbConnection(Arg.Any<string>()).Returns(connection);
+            init.DbCommand(Arg.Any<string>()).Returns(command);
+            var client = new SprocClient(init);
+
+            //act
+            var result = await client.QueryAsync<IEnumerable<Ad>>(
+                new SprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
+
+            //assert
+            Assert.IsNull(result);
         }
     }
 }

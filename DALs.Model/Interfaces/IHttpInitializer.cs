@@ -5,7 +5,7 @@
     /// <summary>
     /// Interface IInitProvider
     /// </summary>
-    public interface IInitHttpHelper
+    public interface IHttpInitializer
     {
         /// <summary>
         /// Gets the HTTP client.

@@ -11,7 +11,7 @@
         [Test]
         public void Constructor()
         {
-            new HttpClientConfig(new Uri("https://happy.ca/"), "route", HttpRequest.Get);
+            new HttpConfiguration(new Uri("https://happy.ca/"), "route", HttpRequest.Get);
         }
     }
 }

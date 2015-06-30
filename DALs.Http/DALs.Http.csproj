@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InitHttpHelper.cs" />
+    <Compile Include="HttpInitializer.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\HttpConfigValidation.cs" />
+    <Compile Include="Validation\HttpRequestValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -10,13 +10,13 @@
         [Test]
         public void Constructor()
         {
-            new SqlSprocConfiguration("connection", "sproc");
+            new SprocConfiguration("connection", "sproc");
         }
 
         [Test]
         public void ConstructorSecond()
         {
-            new SqlSprocConfiguration("connection", "sproc", SprocMode.ExecuteReader);
+            new SprocConfiguration("connection", "sproc", SprocMode.ExecuteReader);
         }
     }
 }

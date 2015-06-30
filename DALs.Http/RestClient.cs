@@ -3,6 +3,7 @@
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
+    using DALs.Http.Validation;
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -16,26 +17,26 @@
         /// <summary>
         /// The inits
         /// </summary>
-        private readonly IInitHttpHelper inits;
+        private readonly IHttpInitializer inits;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RestClient"/> class.
         /// </summary>
-        public RestClient():this(new InitHttpHelper())
+        public RestClient():this(new HttpInitializer())
         {  
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RestClient"/> class.
         /// </summary>
-        /// <param name="initProvider">The initialize provider.</param>
-        public RestClient(IInitHttpHelper initProvider)
+        /// <param name="init">The initialize provider.</param>
+        public RestClient(IHttpInitializer init)
         {
-            if (initProvider == null)
+            if (init == null)
             {
-                throw new ArgumentNullException("initProvider");
+                throw new ArgumentNullException("init");
             }
-            inits = initProvider;
+            inits = init;
         }
 
         /// <summary>
@@ -47,16 +48,9 @@
         /// <returns>Task&lt;T&gt;.</returns>
         /// <exception cref="System.ArgumentException">
         /// </exception>
-        public virtual async Task<T> GetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
+        public virtual async Task<T> GetAsync<T>(HttpConfiguration config, Func<HttpResponseMessage, T> loader)
         {
-            if (null == config.Uri)
-            {
-                throw new ArgumentException("Uri");
-            }
-            if (string.IsNullOrWhiteSpace(config.Route))
-            {
-                throw new ArgumentException("Route");
-            }
+            config.ValidateGet();
 
             using (var client = inits.HttpClient)
             {
@@ -77,26 +71,11 @@
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
         /// <exception cref="System.ArgumentException"></exception>
-        public virtual async Task<T> SetAsync<T>(HttpClientConfig config, Func<HttpResponseMessage, T> loader)
+        public virtual async Task<T> SetAsync<T>(HttpConfiguration config, Func<HttpResponseMessage, T> loader)
         {
-            if (null == config.Uri)
-            {
-                throw new ArgumentException("Uri");
-            }
-            if (string.IsNullOrWhiteSpace(config.Route))
-            {
-                throw new ArgumentException("Route");
-            }
-            if (null == config.Data)
-            {
-                throw new ArgumentException("Data");
-            }
-            if (config.RequestMethod != HttpRequest.Post && config.RequestMethod != HttpRequest.Put)
-            {
-                throw new ArgumentException("RequestMethod");
-            }
+            config.ValidateSet();
 
-            using (var client = inits.HttpClient)
+            using (HttpClient client = inits.HttpClient)
             {
                 client.BaseAddress = config.Uri;
                 client.DefaultRequestHeaders.Accept.Clear();

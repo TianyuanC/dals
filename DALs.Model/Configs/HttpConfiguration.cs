@@ -6,15 +6,15 @@
     /// <summary>
     /// Class HttpClientConfig.
     /// </summary>
-    public class HttpClientConfig
+    public class HttpConfiguration
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HttpClientConfig"/> class.
+        /// Initializes a new instance of the <see cref="HttpConfiguration"/> class.
         /// </summary>
         /// <param name="uri">The URI.</param>
         /// <param name="route">The route.</param>
         /// <param name="method">The method.</param>
-        public HttpClientConfig(Uri uri, string route, HttpRequest method)
+        public HttpConfiguration(Uri uri, string route, HttpRequest method)
         {
             this.Uri = uri;
             this.Route = route;

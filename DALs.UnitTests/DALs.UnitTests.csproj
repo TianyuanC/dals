@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="DALsHttp\InitProviderTests.cs" />
     <Compile Include="DALsHttp\RestClientTests.cs" />
+    <Compile Include="DALsHttp\Validation\HttpConfigValidationTests.cs" />
+    <Compile Include="DALsHttp\Validation\HttpRequestValidationTests.cs" />
     <Compile Include="DALsModel\Configs\HttpClinetConfigTests.cs" />
     <Compile Include="DALsModel\Configs\SqlSprocConfigsTests.cs" />
     <Compile Include="DAlsSql\Extensions\IDbCommandExtensionsTests.cs" />

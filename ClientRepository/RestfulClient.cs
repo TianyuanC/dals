@@ -49,7 +49,7 @@
         public async Task<IEnumerable<Ad>> GetAsync(IEnumerable<long> ids)
         {
             var uri = new Uri(CloudConfigurationManager.GetSetting(Settings.TestApiUri));
-            var config = new HttpClientConfig(uri, "api/ad", HttpRequest.Get);
+            var config = new HttpConfiguration(uri, "api/ad", HttpRequest.Get);
             return await this.restClient.GetAsync(config, LoadAds);
         }
 

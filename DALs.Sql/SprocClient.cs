@@ -19,12 +19,12 @@
         /// <summary>
         /// The initialize
         /// </summary>
-        private readonly IInitSqlHelper init;
+        private readonly ISqlInitializer init;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SprocClient"/> class.
         /// </summary>
-        public SprocClient():this(new InitSqlHelper())
+        public SprocClient():this(new SqlInitializer())
         { 
         }
 
@@ -32,7 +32,7 @@
         /// Initializes a new instance of the <see cref="SprocClient"/> class.
         /// </summary>
         /// <param name="init">The initialize.</param>
-        public SprocClient(IInitSqlHelper init)
+        public SprocClient(ISqlInitializer init)
         {
             this.init = init;
         }
@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="config">The configuration.</param>
         /// <returns>Task&lt;System.Int32&gt;.</returns>
-        public virtual async Task<int> CommandAsync(SqlSprocConfiguration config)
+        public virtual async Task<int> CommandAsync(SprocConfiguration config)
         {
             int result = -1;
             using (IDbConnection connection = init.DbConnection(config.ConnectionString))
@@ -75,7 +75,7 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        public virtual async Task<T> QueryAsync<T>(SqlSprocConfiguration config, Func<IDataReader, T> loader = null)
+        public virtual async Task<T> QueryAsync<T>(SprocConfiguration config, Func<IDataReader, T> loader = null)
         {
             T result = default(T);
             using (IDbConnection connection = init.DbConnection(config.ConnectionString))
