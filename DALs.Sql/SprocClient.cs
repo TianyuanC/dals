@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="config">The configuration.</param>
         /// <returns>Task&lt;System.Int32&gt;.</returns>
-        public virtual async Task<int> CommandAsync(SprocConfiguration config)
+        public virtual async Task<int> CommandAsync(SqlConfiguration config)
         {
             int result = -1;
             using (IDbConnection connection = init.DbConnection(config.ConnectionString))
@@ -51,6 +51,7 @@
                 {
                     using (IDbCommand command = init.DbCommand(config.StoredProcedureName))
                     {
+                        command.Connection = connection;
                         command.LoadParameters(config.SqlParameters as List<SqlParameter>);
                         connection.Open();
                         result = await command.ExecuteNonQueryAsync();
@@ -75,7 +76,7 @@
         /// <param name="config">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        public virtual async Task<T> QueryAsync<T>(SprocConfiguration config, Func<IDataReader, T> loader = null)
+        public virtual async Task<T> QueryAsync<T>(SqlConfiguration config, Func<IDataReader, T> loader = null)
         {
             T result = default(T);
             using (IDbConnection connection = init.DbConnection(config.ConnectionString))

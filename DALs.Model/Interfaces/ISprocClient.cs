@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         /// <returns>Task&lt;System.Int32&gt;.</returns>
-        Task<int> CommandAsync(SprocConfiguration configuration);
+        Task<int> CommandAsync(SqlConfiguration configuration);
 
         /// <summary>
         /// Queries the asynchronous.
@@ -24,6 +24,6 @@
         /// <param name="configuration">The configuration.</param>
         /// <param name="loader">The loader.</param>
         /// <returns>Task&lt;T&gt;.</returns>
-        Task<T> QueryAsync<T>(SprocConfiguration configuration, Func<IDataReader, T> loader);
+        Task<T> QueryAsync<T>(SqlConfiguration configuration, Func<IDataReader, T> loader);
     }
 }

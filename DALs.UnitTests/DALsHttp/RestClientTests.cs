@@ -1,6 +1,11 @@
 ﻿namespace DALs.UnitTests.DALsHttp
 {
+    using ClientRepository.Model;
     using DALs.Http;
+    using DALs.Model.Configs;
+    using DALs.Model.Enums;
+    using DALs.Model.Interfaces;
+    using NSubstitute;
     using NUnit.Framework;
     using System;
     using System.Collections.Generic;
@@ -8,11 +13,6 @@
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using ClientRepository.Model;
-    using DALs.Model.Configs;
-    using DALs.Model.Enums;
-    using DALs.Model.Interfaces;
-    using NSubstitute;
 
     [TestFixture]
     public class RestClientTests

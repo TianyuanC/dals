@@ -1,9 +1,9 @@
 ﻿namespace DALs.UnitTests.DALsHttp.Validation
 {
-    using System;
     using DALs.Http.Validation;
     using DALs.Model.Enums;
     using NUnit.Framework;
+    using System;
 
     [TestFixture]
     public class HttpRequestValidationTests

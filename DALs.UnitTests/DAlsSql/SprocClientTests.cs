@@ -6,13 +6,13 @@
     using DALs.Model.Interfaces;
     using DALs.Sql;
     using NSubstitute;
+    using NSubstitute.ExceptionExtensions;
     using NUnit.Framework;
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using System.Threading.Tasks;
-    using System;
-    using NSubstitute.ExceptionExtensions;
 
     [TestFixture]
     public class SprocClientTests
@@ -38,7 +38,7 @@
             var client = new SprocClient(init);
 
             //act
-            var result = await client.CommandAsync(new SprocConfiguration(FakeConnection, "testSproc"));
+            var result = await client.CommandAsync(new SqlConfiguration(FakeConnection, "testSproc"));
 
             //assert
             Assert.AreEqual(0, result);
@@ -58,7 +58,7 @@
             var client = new SprocClient(init);
 
             //act
-            var result = await client.CommandAsync(new SprocConfiguration(FakeConnection, "testSproc"));
+            var result = await client.CommandAsync(new SqlConfiguration(FakeConnection, "testSproc"));
 
             //assert
             Assert.AreEqual(-1, result);
@@ -80,7 +80,7 @@
 
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(
-                new SprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
+                new SqlConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
 
             //assert
             Assert.AreEqual(1, result.Count(x => x.Id == long.MaxValue));
@@ -100,7 +100,7 @@
 
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(
-                new SprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteReader),
+                new SqlConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteReader),
                 reader => new List<Ad> { new Ad { Id = long.MinValue } });
 
             //assert
@@ -122,7 +122,7 @@
 
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(
-                new SprocConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
+                new SqlConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
 
             //assert
             Assert.IsNull(result);

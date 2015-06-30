@@ -1,9 +1,9 @@
 ﻿namespace DALs.Http
 {
+    using DALs.Http.Validation;
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
-    using DALs.Http.Validation;
     using System;
     using System.Net.Http;
     using System.Net.Http.Headers;

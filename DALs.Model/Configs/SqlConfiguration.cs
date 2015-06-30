@@ -7,25 +7,25 @@
     /// <summary>
     /// Class SqlSprocConfiguration.
     /// </summary>
-    public class SprocConfiguration
+    public class SqlConfiguration
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SprocConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="SqlConfiguration"/> class.
         /// </summary>
         /// <param name="connectionString">The connection string.</param>
         /// <param name="sprocName">Name of the sproc.</param>
-        public SprocConfiguration(string connectionString, string sprocName)
+        public SqlConfiguration(string connectionString, string sprocName)
         {
             ConnectionString = connectionString;
             StoredProcedureName = sprocName;
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SprocConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="SqlConfiguration"/> class.
         /// </summary>
         /// <param name="connectionString">The connection string.</param>
         /// <param name="sprocName">Name of the sproc.</param>
         /// <param name="mode">The mode.</param>
-        public SprocConfiguration(string connectionString, string sprocName, SprocMode mode)
+        public SqlConfiguration(string connectionString, string sprocName, SprocMode mode)
         {
             ConnectionString = connectionString;
             StoredProcedureName = sprocName;

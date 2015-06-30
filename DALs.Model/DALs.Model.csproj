@@ -81,7 +81,7 @@
     <Compile Include="Interfaces\ISprocClient.cs" />
     <Compile Include="Interfaces\IRestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configs\SprocConfiguration.cs" />
+    <Compile Include="Configs\SqlConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
