@@ -5,7 +5,7 @@
     using System.Net.Http;
 
     [TestFixture]
-    public class InitProviderTests
+    public class HttpInitializerTests
     {
         [Test]
         public void Constructor()

@@ -15,7 +15,7 @@
     using System.Threading.Tasks;
 
     [TestFixture]
-    public class SprocClientTests
+    public class SqlClientTests
     {
         private const string FakeConnection = "server=happy.net; initial catalog=a;uid=a; pwd=pwd; Connect Timeout=90";
 
@@ -126,6 +126,53 @@
 
             //assert
             Assert.IsNull(result);
+        }
+
+        [Test]
+        public async Task CommandMultiple()
+        {
+            //arrange
+            var connection = Substitute.For<IDbConnection>();
+            var command = Substitute.For<IDbCommand>();
+            var transaction = Substitute.For<IDbTransaction>();
+            var init = Substitute.For<ISqlInitializer>();
+            connection.Open();
+            connection.BeginTransaction(Arg.Any<IsolationLevel>()).Returns(transaction);
+            init.DbConnection(Arg.Any<string>()).Returns(connection);
+            init.DbCommand(Arg.Any<string>()).Returns(command);
+            var client = new SqlClient(init);
+
+            //act
+            var result = await client.CommandMultipleAsync(new SqlConfiguration(FakeConnection, new List<string> { "testSproc1", "testSproc2" }));
+
+            //assert
+            Assert.AreEqual(0, result);
+            command.Received(2).ExecuteNonQuery();
+            transaction.Received(1).Commit();
+        }
+
+        [Test]
+        public async Task CommandMultipleThrow()
+        {
+            //arrange
+            var connection = Substitute.For<IDbConnection>();
+            var command = Substitute.For<IDbCommand>();
+            var transaction = Substitute.For<IDbTransaction>();
+            var init = Substitute.For<ISqlInitializer>();
+            connection.Open();
+            connection.BeginTransaction(Arg.Any<IsolationLevel>()).Returns(transaction);
+            command.ExecuteNonQuery().Returns(x => 0, x => { throw new Exception(); });
+            init.DbConnection(Arg.Any<string>()).Returns(connection);
+            init.DbCommand(Arg.Any<string>()).Returns(command);
+            var client = new SqlClient(init);
+
+            //act
+            var result = await client.CommandMultipleAsync(new SqlConfiguration(FakeConnection, new List<string> { "testSproc1", "testSproc2" }));
+
+            //assert
+            Assert.AreEqual(-1, result);
+            command.Received(2).ExecuteNonQuery();
+            transaction.Received(0).Commit();
         }
     }
 }

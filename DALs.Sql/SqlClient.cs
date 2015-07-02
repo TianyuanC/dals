@@ -103,6 +103,7 @@
                 catch (Exception e)
                 {
                     Trace.TraceError(e.StackTrace);
+                    result = -1;
                 }
                 finally
                 {

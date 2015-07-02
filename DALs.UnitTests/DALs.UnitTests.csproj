@@ -55,18 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALsHttp\InitProviderTests.cs" />
+    <Compile Include="DALsHttp\HttpInitializerTests.cs" />
     <Compile Include="DALsHttp\RestClientTests.cs" />
     <Compile Include="DALsHttp\Validation\HttpConfigValidationTests.cs" />
     <Compile Include="DALsHttp\Validation\HttpRequestValidationTests.cs" />
-    <Compile Include="DALsModel\Configs\HttpClinetConfigTests.cs" />
-    <Compile Include="DALsModel\Configs\SqlSprocConfigsTests.cs" />
+    <Compile Include="DALsModel\Configs\HttpConfigTests.cs" />
+    <Compile Include="DALsModel\Configs\SqlConfigTests.cs" />
     <Compile Include="DAlsSql\Extensions\IDbCommandExtensionsTests.cs" />
     <Compile Include="DAlsSql\Extensions\IDbConnectionExtensionsTests.cs" />
     <Compile Include="DAlsSql\Extensions\SqlCommandExtensionsTest.cs" />
     <Compile Include="DAlsSql\Extractions\DataReaderExtractionsTests.cs" />
-    <Compile Include="DAlsSql\InitSqlHelperTests.cs" />
-    <Compile Include="DAlsSql\SprocClientTests.cs" />
+    <Compile Include="DAlsSql\SqlInitializerTests.cs" />
+    <Compile Include="DAlsSql\SqlClientTests.cs" />
     <Compile Include="Demos\DbClientTests.cs" />
     <Compile Include="Demos\RestfulClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

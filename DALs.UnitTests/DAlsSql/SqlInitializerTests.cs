@@ -4,7 +4,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class InitSqlHelperTests
+    public class SqlInitializerTests
     {
         private const string FakeConnection = "server=happy.net; initial catalog=a;uid=a; pwd=pwd; Connect Timeout=90";
 
