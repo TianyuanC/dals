@@ -34,7 +34,7 @@
         {
             var reader = Substitute.For<IDataReader>();
             reader.IsDBNull(Arg.Any<int>()).Returns(false);
-            reader[1].Throws<InvalidCastException>();
+            reader[1].Returns("test");
             Assert.Throws<InvalidCastException>(()=> reader.Get(1, 1));
         }
     }

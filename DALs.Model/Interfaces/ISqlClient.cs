@@ -8,17 +8,25 @@
     /// <summary>
     /// Interface ISprocs
     /// </summary>
-    public interface ISprocClient
+    public interface ISqlClient
     {
         /// <summary>
-        /// Commands the asynchronous.
+        /// Execute a single command asynchronously.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         /// <returns>Task&lt;System.Int32&gt;.</returns>
         Task<int> CommandAsync(SqlConfiguration configuration);
 
         /// <summary>
-        /// Queries the asynchronous.
+        /// Execute multiple commands asynchronously.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="isolate">The isolation level.</param>
+        /// <returns>Task&lt;System.Int32&gt;.</returns>
+        Task<int> CommandMultipleAsync(SqlConfiguration configuration, IsolationLevel isolate = IsolationLevel.Unspecified);
+        
+        /// <summary>
+        /// Execute a single query asynchronously.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="configuration">The configuration.</param>

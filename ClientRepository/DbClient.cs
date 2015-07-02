@@ -16,9 +16,9 @@
     public class DbClient : IDbClient
     {
         /// <summary>
-        /// The sprocs
+        /// The sqlClient
         /// </summary>
-        private readonly ISprocClient sprocs;
+        private readonly ISqlClient sqlClient;
 
         /// <summary>
         /// The connection string
@@ -28,7 +28,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DbClient"/> class.
         /// </summary>
-        public DbClient(): this(new SprocClient())
+        public DbClient(): this(new SqlClient())
         {
             
         }
@@ -36,15 +36,15 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="DbClient"/> class.
         /// </summary>
-        /// <param name="sprocs">The sprocs.</param>
-        /// <exception cref="System.ArgumentNullException">sprocs</exception>
-        public DbClient(ISprocClient sprocs)
+        /// <param name="sqlClient">The sqlClient.</param>
+        /// <exception cref="System.ArgumentNullException">sqlClient</exception>
+        public DbClient(ISqlClient sqlClient)
         {
-            if (sprocs == null)
+            if (sqlClient == null)
             {
-                throw new ArgumentNullException("sprocs");
+                throw new ArgumentNullException("sqlClient");
             }
-            this.sprocs = sprocs;
+            this.sqlClient = sqlClient;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@
         public async Task<IEnumerable<Ad>> GetAsync()
         {
             var config = new SqlConfiguration(ConnectionString, Settings.GetAd, SprocMode.ExecuteReader);
-            return await sprocs.QueryAsync(config, AdsLoader);
+            return await sqlClient.QueryAsync(config, AdsLoader);
         }
 
         /// <summary>

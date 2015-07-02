@@ -22,7 +22,7 @@
         [Test]
         public void Constructor()
         {
-            new SprocClient();
+            new SqlClient();
         }
 
         [Test]
@@ -35,7 +35,7 @@
             connection.Open();
             init.DbConnection(Arg.Any<string>()).Returns(connection);
             init.DbCommand(Arg.Any<string>()).Returns(command);
-            var client = new SprocClient(init);
+            var client = new SqlClient(init);
 
             //act
             var result = await client.CommandAsync(new SqlConfiguration(FakeConnection, "testSproc"));
@@ -55,7 +55,7 @@
             command.ExecuteNonQuery().Throws(call => { throw new Exception();});
             init.DbConnection(Arg.Any<string>()).Returns(connection);
             init.DbCommand(Arg.Any<string>()).Returns(command);
-            var client = new SprocClient(init);
+            var client = new SqlClient(init);
 
             //act
             var result = await client.CommandAsync(new SqlConfiguration(FakeConnection, "testSproc"));
@@ -76,7 +76,7 @@
             command.ExecuteScalar().Returns(ads);
             init.DbConnection(Arg.Any<string>()).Returns(connection);
             init.DbCommand(Arg.Any<string>()).Returns(command);
-            var client = new SprocClient(init);
+            var client = new SqlClient(init);
 
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(
@@ -96,7 +96,7 @@
             connection.Open();
             init.DbConnection(Arg.Any<string>()).Returns(connection);
             init.DbCommand(Arg.Any<string>()).Returns(command);
-            var client = new SprocClient(init);
+            var client = new SqlClient(init);
 
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(
@@ -118,7 +118,7 @@
             command.ExecuteScalar().Throws<Exception>();
             init.DbConnection(Arg.Any<string>()).Returns(connection);
             init.DbCommand(Arg.Any<string>()).Returns(command);
-            var client = new SprocClient(init);
+            var client = new SqlClient(init);
 
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(

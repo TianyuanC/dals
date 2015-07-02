@@ -26,14 +26,14 @@
         public void ConstructorNullSprocs()
         {
             var ex = Assert.Throws<ArgumentNullException>(()=>new DbClient(null));
-            Assert.AreEqual("sprocs", ex.ParamName);
+            Assert.AreEqual("sqlClient", ex.ParamName);
         }
 
         [Test]
         public async Task Get()
         {
             //arrange
-            var sprocs = Substitute.For<ISprocClient>();
+            var sprocs = Substitute.For<ISqlClient>();
             var dbClient = new DbClient(sprocs);
             IEnumerable<Ad> ads = new List<Ad> { new Ad { Id = 1 } };
             sprocs.QueryAsync(Arg.Any<SqlConfiguration>(), Arg.Any<Func<IDataReader, IEnumerable<Ad>>>()).Returns(Task.FromResult(ads));
@@ -45,7 +45,7 @@
             Assert.AreEqual(1, ret.Count(x=>x.Id==1));
             sprocs.Received(1).QueryAsync(
                     Arg.Is<SqlConfiguration>(
-                        x => x.Mode == SprocMode.ExecuteReader && x.StoredProcedureName == Settings.GetAd),
+                        x => x.Mode == SprocMode.ExecuteReader && x.StoredProcedures.Contains(Settings.GetAd)),
                     Arg.Any<Func<IDataReader, IEnumerable<Ad>>>());
         }
 

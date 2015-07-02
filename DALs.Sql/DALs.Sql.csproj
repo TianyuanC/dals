@@ -49,7 +49,7 @@
     <Compile Include="Extensions\SqlCommandExtensions.cs" />
     <Compile Include="Extractions\DataReaderExtractions.cs" />
     <Compile Include="SqlInitializer.cs" />
-    <Compile Include="SprocClient.cs" />
+    <Compile Include="SqlClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

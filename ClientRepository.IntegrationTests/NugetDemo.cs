@@ -14,9 +14,9 @@
     public class NugetDemo
     {
         /// <summary>
-        /// The sprocs
+        /// The _sqls
         /// </summary>
-        private readonly ISprocClient sprocs;
+        private readonly ISprocClient sqlClient;
         /// <summary>
         /// The web client
         /// </summary>
@@ -32,11 +32,11 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetDemo"/> class.
         /// </summary>
-        /// <param name="sprocs">The sprocs.</param>
+        /// <param name="sqls">The _sqls.</param>
         /// <param name="restClient">The web client.</param>
-        public NugetDemo(ISprocClient sprocs, IRestClient restClient)
+        public NugetDemo(ISprocClient sqls, IRestClient restClient)
         {
-            this.sprocs = sprocs;
+            this.sqlClient = sqls;
             this.restClient = restClient;
         }
 
@@ -47,10 +47,10 @@
         public async Task Demo()
         {
             var sqlQueryConfig = new SprocConfiguration("connection", "sproc", SprocMode.ExecuteReader);
-            await sprocs.QueryAsync(sqlQueryConfig, reader => 1);
+            await sqlClient.QueryAsync(sqlQueryConfig, reader => 1);
 
             var sqlCommandConfig = new SprocConfiguration("connection", "sproc", SprocMode.ExecuteNonQuery);
-            await sprocs.CommandAsync(sqlCommandConfig);
+            await sqlClient.CommandAsync(sqlCommandConfig);
 
             var httpGetConfig = new HttpConfiguration(new Uri("http://test.ca"), "route", HttpRequest.Get);
             await restClient.GetAsync(httpGetConfig, response => 1);
