@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>DALs.Core</id>
-		<version>1.0.0</version>
+		<version>1.0.7-beta</version>
 		<authors>Tianyuan Chu</authors>
 		<owners>Tianyuan Chu</owners>
 		<licenseUrl>https://github.com/TianyuanC/dals/blob/master/LICENSE</licenseUrl>

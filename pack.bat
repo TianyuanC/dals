@@ -1,0 +1,1 @@
+.nuget\Nuget.exe pack dals.core.nuspec
