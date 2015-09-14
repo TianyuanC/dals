@@ -68,7 +68,7 @@
         public async Task QueryScalar()
         {
             //arrange
-            IEnumerable<Ad> ads = new List<Ad> { new Ad { Id = long.MaxValue } };
+            IEnumerable<Ad> ads = new List<Ad> { new Ad { AdID = Int32.MaxValue } };
             var connection = Substitute.For<IDbConnection>();
             var command = Substitute.For<IDbCommand>();
             var init = Substitute.For<ISqlInitializer>();
@@ -83,7 +83,7 @@
                 new SqlConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteScalar));
 
             //assert
-            Assert.AreEqual(1, result.Count(x => x.Id == long.MaxValue));
+            Assert.AreEqual(1, result.Count(x => x.AdID == Int32.MaxValue));
         }
 
         [Test]
@@ -101,10 +101,10 @@
             //act
             var result = await client.QueryAsync<IEnumerable<Ad>>(
                 new SqlConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteReader),
-                reader => new List<Ad> { new Ad { Id = long.MinValue } });
+                reader => new List<Ad> { new Ad { AdID = Int32.MinValue } });
 
             //assert
-            Assert.AreEqual(1, result.Count(x => x.Id == long.MinValue));
+            Assert.AreEqual(1, result.Count(x => x.AdID == Int32.MinValue));
         }
 
         [Test]

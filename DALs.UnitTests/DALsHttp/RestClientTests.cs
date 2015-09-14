@@ -39,9 +39,9 @@
             var rest = new RestClient(init);
             var config = new HttpConfiguration(new Uri("http://happy.ca/"), "route", HttpRequest.Get);
             
-            var ads = await rest.GetAsync(config, response => new List<Ad>{new Ad{Id = long.MaxValue}});
+            var ads = await rest.GetAsync(config, response => new List<Ad>{new Ad{AdID = Int32.MaxValue}});
 
-            Assert.AreEqual(1, ads.Count(x=>x.Id==long.MaxValue));
+            Assert.AreEqual(1, ads.Count(x=>x.AdID==Int32.MaxValue));
             Assert.AreEqual("http://happy.ca/route", messager.RequestMessage.RequestUri.AbsoluteUri);
             Assert.AreEqual(HttpMethod.Get, messager.RequestMessage.Method);
         }
@@ -57,9 +57,9 @@
                 new Uri("http://happy.ca/"), "route", HttpRequest.Put) {Data = "data"};
 
             var ads = await rest.SetAsync(config, response => 
-                new List<Ad> { new Ad { Id = long.MaxValue } });
+                new List<Ad> { new Ad { AdID = Int32.MaxValue } });
 
-            Assert.AreEqual(1, ads.Count(x => x.Id == long.MaxValue));
+            Assert.AreEqual(1, ads.Count(x => x.AdID == Int32.MaxValue));
             Assert.AreEqual("http://happy.ca/route", messager.RequestMessage.RequestUri.AbsoluteUri);
             Assert.AreEqual(HttpMethod.Put, messager.RequestMessage.Method);
         }
@@ -75,9 +75,9 @@
                 new Uri("http://happy.ca/"), "route", HttpRequest.Post) { Data = "data" };
 
             var ads = await rest.SetAsync(config, response =>
-                new List<Ad> { new Ad { Id = long.MaxValue } });
+                new List<Ad> { new Ad { AdID = Int32.MaxValue } });
 
-            Assert.AreEqual(1, ads.Count(x => x.Id == long.MaxValue));
+            Assert.AreEqual(1, ads.Count(x => x.AdID == Int32.MaxValue));
             Assert.AreEqual("http://happy.ca/route", messager.RequestMessage.RequestUri.AbsoluteUri);
             Assert.AreEqual(HttpMethod.Post, messager.RequestMessage.Method);
         }

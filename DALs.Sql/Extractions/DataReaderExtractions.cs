@@ -9,8 +9,32 @@
     /// </summary>
     public static class DataReaderExtractions
     {
+
         /// <summary>
-        /// Gets the specified reader.
+        /// Gets the reader value by column name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="reader">The reader.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="defaultVal">The default value.</param>
+        /// <returns>T.</returns>
+        public static T Get<T>(this IDataReader reader, string columnName, T defaultVal = default(T))
+        {
+            int index;
+            try
+            {
+                index = reader.GetOrdinal(columnName);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Trace.TraceError("Cannot find the column named: {0}", columnName);
+                throw;
+            }
+            return reader.Get(index, defaultVal);
+        }
+
+        /// <summary>
+        /// Gets reader value by index.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="reader">The reader.</param>

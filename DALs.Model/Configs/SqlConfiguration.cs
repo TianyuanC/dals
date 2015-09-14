@@ -59,7 +59,7 @@
         /// Gets or sets the connection string.
         /// </summary>
         /// <value>The connection string.</value>
-        public string ConnectionString { get; set; }
+        public string ConnectionString { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the stored procedure.
@@ -77,6 +77,6 @@
         /// Gets or sets the mode.
         /// </summary>
         /// <value>The mode.</value>
-        public SprocMode Mode { get; set; }
+        public SprocMode Mode { get; private set; }
     }
 }

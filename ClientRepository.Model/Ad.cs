@@ -11,7 +11,7 @@ namespace ClientRepository.Model
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
-        public long Id { get; set; }
+        public int AdID { get; set; }
 
         /// <summary>
         /// Gets or sets the last modification date.
@@ -24,5 +24,11 @@ namespace ClientRepository.Model
         /// </summary>
         /// <value>The content.</value>
         public string Content { get; set; }
+
+        /// <summary>
+        /// Gets or sets the test counter.
+        /// </summary>
+        /// <value>The test counter.</value>
+        public long TestCounter { get; set; }
     }
 }

@@ -66,17 +66,18 @@
         {
             var ads = new List<Ad>();
 
-            var idIndex = reader.GetOrdinal("Id");
-            var lastModIndex = reader.GetOrdinal("LastModificationDate");
-            var contentIndex = reader.GetOrdinal("Content");
-
             while (reader.Read())
             {
+                var adId = reader.Get<int>("AdID");
+                var lastMod = reader.Get<DateTime>("LastModificationDate");
+                var content = reader.Get<string>("Content");
+                var counter = reader.Get<long>("TestCounter");
                 var ad = new Ad
                 {
-                    Id = reader.Get<long>(idIndex),
-                    LastModificationDate = reader.Get<DateTime>(lastModIndex),
-                    Content = reader.Get<string>(contentIndex),
+                    AdID = adId,
+                    LastModificationDate = lastMod,
+                    Content = content,
+                    TestCounter = counter
                 };
                 ads.Add(ad);
 
