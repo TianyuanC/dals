@@ -11,6 +11,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Threading.Tasks;
 
     public class DbClient : IDbClient
@@ -48,13 +49,36 @@
         }
 
         /// <summary>
-        /// Gets this instance.
+        /// Gets ads.
         /// </summary>
         /// <returns>Task&lt;IEnumerable&lt;Ad&gt;&gt;.</returns>
         public async Task<IEnumerable<Ad>> GetAsync()
         {
             var config = new SqlConfiguration(ConnectionString, Settings.GetAd, SprocMode.ExecuteReader);
             return await sqlClient.QueryAsync(config, AdsLoader);
+        }
+
+        /// <summary>
+        /// Insert new ad.
+        /// </summary>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        public async Task<bool> InsertAsync()
+        {
+            SqlParameter content = new SqlParameter("content", SqlDbType.VarChar) { Value = "Test" };
+            var config = new SqlConfiguration(ConnectionString, "InsertAd") { SqlParameters = new List<SqlParameter> { content } };
+            return await sqlClient.CommandAsync(config) > 0;
+        }
+
+        /// <summary>
+        /// update ad.
+        /// </summary>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        public async Task<bool> UpdateAsync()
+        {
+            var content = new SqlParameter("content", SqlDbType.VarChar) { Value = "Test" };
+            var id = new SqlParameter("id", SqlDbType.Int) { Value = 1 };
+            var config = new SqlConfiguration(ConnectionString, "UpdateAd") { SqlParameters = new List<SqlParameter> { content, id } };
+            return await sqlClient.CommandAsync(config) > 0;
         }
 
         /// <summary>
@@ -68,10 +92,10 @@
 
             while (reader.Read())
             {
-                var adId = reader.Get<int>("AdID");
-                var lastMod = reader.Get<DateTime>("LastModificationDate");
+                var adId = reader.Get<int>("ID");
+                var lastMod = reader.Get<DateTime>("ModificationDate");
                 var content = reader.Get<string>("Content");
-                var counter = reader.Get<long>("TestCounter");
+                var counter = reader.Get<long>("Counter");
                 var ad = new Ad
                 {
                     AdID = adId,
