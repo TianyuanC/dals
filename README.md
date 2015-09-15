@@ -14,6 +14,14 @@ Tired of writing the same block of data access layer code for each project, I ex
 * PM> Install-Package DALs.Core -Version 1.0.6-beta -Pre
 
 # Usage
+Get the SQL client, inject or new it, do whatever you want
+
+```cs
+/// <summary>
+/// The SQL Client
+/// </summary>
+private readonly ISqlClient sqlClient;
+```
 
 Update/Insert via stored procedure
 
