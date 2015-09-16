@@ -57,10 +57,10 @@
  
             reader.Read().Returns(x => true, x => true, x => false); //load two rounds
             
-            reader.GetOrdinal("AdID").Returns(0); //indexes
-            reader.GetOrdinal("LastModificationDate").Returns(1);
+            reader.GetOrdinal("ID").Returns(0); //indexes
+            reader.GetOrdinal("ModificationDate").Returns(1);
             reader.GetOrdinal("Content").Returns(2);
-            reader.GetOrdinal("TestCounter").Returns(3);
+            reader.GetOrdinal("Counter").Returns(3);
  
             reader.IsDBNull(Arg.Any<int>()).Returns(false);
             reader[0].Returns(x => 1, x => 2);
