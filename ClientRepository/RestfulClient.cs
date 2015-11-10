@@ -3,6 +3,7 @@
     using ClientRepository.Model;
     using ClientRepository.Model.Interfaces;
     using DALs.Http;
+    using DALs.Http.Conversion;
     using DALs.Model.Configs;
     using DALs.Model.Enums;
     using DALs.Model.Interfaces;
@@ -60,7 +61,7 @@
         /// <returns>IEnumerable&lt;Ad&gt;.</returns>
         public static IEnumerable<Ad> LoadAds(HttpResponseMessage msg)
         {
-            return new List<Ad>();
+            return msg.To<List<Ad>>();
         }
     }
 }

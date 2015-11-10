@@ -1,5 +1,6 @@
 ﻿namespace DALs.UnitTests.Demos
 {
+    using System.Text;
     using ClientRepository;
     using ClientRepository.Model;
     using DALs.Model.Configs;
@@ -50,7 +51,7 @@
         [Test]
         public void LoadAd()
         {
-            var ads = RestfulClient.LoadAds(new HttpResponseMessage());
+            var ads = RestfulClient.LoadAds(new HttpResponseMessage{Content = new StringContent("[]",Encoding.UTF8,"application/json")});
             Assert.AreEqual(0, ads.Count());
         }
     }
