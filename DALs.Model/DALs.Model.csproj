@@ -80,6 +80,7 @@
     <Compile Include="Interfaces\IQueueClient.cs" />
     <Compile Include="Interfaces\ISqlClient.cs" />
     <Compile Include="Interfaces\IRestClient.cs" />
+    <Compile Include="Interfaces\ITableClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configs\SqlConfiguration.cs" />
   </ItemGroup>

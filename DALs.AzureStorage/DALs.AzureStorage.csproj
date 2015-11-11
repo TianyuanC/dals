@@ -69,8 +69,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureStorageInitializer.cs" />
+    <Compile Include="BlobClient.cs" />
     <Compile Include="QueueClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
