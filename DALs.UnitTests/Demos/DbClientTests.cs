@@ -50,6 +50,45 @@
         }
 
         [Test]
+        public async Task Insert()
+        {
+            //arrange
+            var sprocs = Substitute.For<ISqlClient>();
+            var dbClient = new DbClient(sprocs);
+            sprocs.CommandAsync(Arg.Any<SqlConfiguration>()).Returns(Task.FromResult(1));
+
+            //act
+            var ret = await dbClient.InsertAsync();
+
+            //assert
+            Assert.IsTrue(ret);
+            sprocs.Received(1).CommandAsync(
+                    Arg.Is<SqlConfiguration>(
+                        x => x.Mode == SprocMode.ExecuteNonQuery && x.StoredProcedures.Contains("InsertAd"))
+                    );
+        }
+
+
+        [Test]
+        public async Task Update()
+        {
+            //arrange
+            var sprocs = Substitute.For<ISqlClient>();
+            var dbClient = new DbClient(sprocs);
+            sprocs.CommandAsync(Arg.Any<SqlConfiguration>()).Returns(Task.FromResult(1));
+
+            //act
+            var ret = await dbClient.UpdateAsync();
+
+            //assert
+            Assert.IsTrue(ret);
+            sprocs.Received(1).CommandAsync(
+                    Arg.Is<SqlConfiguration>(
+                        x => x.Mode == SprocMode.ExecuteNonQuery && x.StoredProcedures.Contains("UpdateAd"))
+                    );
+        }
+
+        [Test]
         public void AdsLoader()
         {
             //arrange
