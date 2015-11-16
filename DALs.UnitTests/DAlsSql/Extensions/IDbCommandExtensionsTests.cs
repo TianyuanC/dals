@@ -23,7 +23,7 @@
         public void ReaderAsync()
         {
             IDbCommand command = new SqlCommand();
-            Assert.Throws<InvalidOperationException>(async()=>await command.ExecuteReaderAsync());
+            Assert.Throws<InvalidOperationException>(async ()=>await command.ExecuteReaderAsync());
         }
 
         [Test]

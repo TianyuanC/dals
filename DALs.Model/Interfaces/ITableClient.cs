@@ -17,6 +17,6 @@ namespace DALs.Model.Interfaces
         /// Updates the asynchronous.
         /// </summary>
         /// <returns>Task.</returns>
-        Task UpdateAsync();
+        Task UpdateAsync<T>();
     }
 }
