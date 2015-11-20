@@ -135,6 +135,10 @@
                         switch (config.Mode)
                         {
                             case SprocMode.ExecuteReader:
+                                if (loader == null)
+                                {
+                                    throw new ArgumentNullException("loader", "No specified loader function");
+                                }
                                 using (var reader = await command.ExecuteReaderAsync())
                                 {
                                     result = loader(reader);
@@ -148,7 +152,7 @@
                 }
                 catch (Exception e)
                 {
-                    Trace.TraceError(e.StackTrace);
+                    Trace.TraceError(string.Format("{0}: {1}",e.Message, e.StackTrace));
                 }
                 finally
                 {

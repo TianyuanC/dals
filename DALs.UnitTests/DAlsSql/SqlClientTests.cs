@@ -87,6 +87,26 @@
         }
 
         [Test]
+        public async Task QueryReaderNoLoader()
+        {
+            //arrange
+            var connection = Substitute.For<IDbConnection>();
+            var command = Substitute.For<IDbCommand>();
+            var init = Substitute.For<ISqlInitializer>();
+            connection.Open();
+            init.DbConnection(Arg.Any<string>()).Returns(connection);
+            init.DbCommand(Arg.Any<string>()).Returns(command);
+            var client = new SqlClient(init);
+
+            //act
+            IEnumerable<Ad> result = await client.QueryAsync<IEnumerable<Ad>>(
+                new SqlConfiguration(FakeConnection, "testSproc", SprocMode.ExecuteReader));
+
+            //assert
+            Assert.IsNull(result);
+        }
+
+        [Test]
         public async Task QueryReader()
         {
             //arrange
