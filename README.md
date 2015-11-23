@@ -11,9 +11,10 @@ Tired of writing the same block of data access layer code for each project, I ex
 
 # Nuget
 
-* PM> Install-Package DALs.Core -Version 1.0.6-beta -Pre
+* PM> Install-Package DALs.Core
 
 # Usage
+##SQL
 Get the SQL client, inject or new it, do whatever you want
 
 ```cs
@@ -78,4 +79,37 @@ public static IEnumerable<Ad> AdsLoader(IDataReader reader)
     }
     return ads;
 }
+```
+##REST API
+```cs
+/// <summary>
+/// The REST Client
+/// </summary>
+private readonly IRestClient restClient;
+```
+
+Retrieve data
+```cs
+/// <summary>
+/// get as an asynchronous operation.
+/// </summary>
+/// <param name="ids">The ids.</param>
+/// <returns>Task&lt;IEnumerable&lt;Ad&gt;&gt;.</returns>
+public async Task<IEnumerable<Ad>> GetAsync(IEnumerable<long> ids)
+{
+    var uri = new Uri(CloudConfigurationManager.GetSetting(Settings.TestApiUri));
+    var config = new HttpConfiguration(uri, "api/ad", HttpRequest.Get);
+    return await this.restClient.GetAsync(config, LoadAds);
+}
+
+/// <summary>
+/// Loads the ads.
+/// </summary>
+/// <param name="msg">The MSG.</param>
+/// <returns>IEnumerable&lt;Ad&gt;.</returns>
+public static IEnumerable<Ad> LoadAds(HttpResponseMessage msg)
+{
+    return msg.To<List<Ad>>();
+}
+
 ```
