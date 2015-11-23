@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>DALs.Core</id>
-		<version>1.0.7</version>
+		<version>1.0.8</version>
 		<authors>Tianyuan Chu</authors>
 		<owners>Tianyuan Chu</owners>
 		<licenseUrl>https://github.com/TianyuanC/dals/blob/master/LICENSE</licenseUrl>
@@ -16,7 +16,7 @@
 			<dependency id="Newtonsoft.Json" version="5.0.8" />
 		  <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
 		  <dependency id="WindowsAzure.Storage" version="4.3.0" />
-      <dependency id="Microsoft.WindowsAzure.Configuration" version="3.1.0" />
+      <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="3.1.0" />
     </dependencies>
 	</metadata>
 	<files>
