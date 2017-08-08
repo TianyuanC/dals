@@ -10,11 +10,11 @@ Tired of writing the same block of data access layer code for each project, I ex
 * Azure storages...
 
 # Nuget
-
-* PM> Install-Package DALs.Core
-
+```
+PM> Install-Package DALs.Core
+```
 # Usage
-##SQL
+## SQL
 Get the SQL client, inject or new it, do whatever you want
 
 ```cs
@@ -80,7 +80,7 @@ public static IEnumerable<Ad> AdsLoader(IDataReader reader)
     return ads;
 }
 ```
-##REST API
+## REST API
 ```cs
 /// <summary>
 /// The REST Client
